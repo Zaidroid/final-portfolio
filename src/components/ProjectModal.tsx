@@ -10,20 +10,19 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project }: ProjectModalProps) => (
-  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border rounded-2xl overflow-hidden flex flex-col md:flex-row bg-card">
-    {/* Left: image, hidden on small screens to maximize clarity */}
+  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border rounded-2xl overflow-hidden flex flex-col md:flex-row bg-background">
+    {/* Left: image section */}
     <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group/dialog">
       <img
         src={project.image}
         alt={project.title}
         className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover/dialog:scale-105"
       />
-      {/* Gradient overlay ONLY on the image side for accent, not behind text */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
     </div>
 
-    {/* Right: Opaque content section over solid background, NO transparency */}
-    <div className="w-full md:w-1/2 p-8 sm:p-10 flex flex-col space-y-5 overflow-y-auto bg-card bg-opacity-100 text-foreground">
+    {/* Right: Content section with solid background */}
+    <div className="w-full md:w-1/2 p-8 sm:p-10 flex flex-col space-y-5 overflow-y-auto bg-background text-foreground">
       <header className="animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
         <Badge variant="secondary" className="mb-3 capitalize text-sm font-medium">{project.category} App</Badge>
         <DialogTitle asChild>
