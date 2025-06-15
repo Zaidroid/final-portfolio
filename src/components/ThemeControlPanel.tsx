@@ -142,12 +142,11 @@ export function ThemeControlPanel({ config, onChange, onReset, onSaveDefault, cu
                       key={preset.value}
                       onClick={() => handleColorChange(preset.value)}
                       className={`w-6 h-6 rounded border transition-transform hover:scale-110 ${
-                        config.accentColor === preset.value ? 'scale-110 ring-2' : ''
+                        config.accentColor === preset.value ? 'scale-110 ring-2 ring-ring' : ''
                       }`}
                       style={{ 
                         backgroundColor: preset.value,
                         borderColor: 'var(--color-border)',
-                        ringColor: 'var(--color-primary)'
                       }}
                       title={preset.name}
                     />
@@ -157,12 +156,11 @@ export function ThemeControlPanel({ config, onChange, onReset, onSaveDefault, cu
                       <button
                         onClick={() => handleColorChange(color)}
                         className={`w-6 h-6 rounded border transition-transform hover:scale-110 ${
-                          config.accentColor === color ? 'scale-110 ring-2' : ''
+                          config.accentColor === color ? 'scale-110 ring-2 ring-ring' : ''
                         }`}
                         style={{ 
                           backgroundColor: color,
                           borderColor: 'var(--color-border)',
-                          ringColor: 'var(--color-primary)'
                         }}
                         title={color}
                       />
