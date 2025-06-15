@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
@@ -48,42 +47,40 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed z-50 transition-all duration-300 ease-in-out ${
-      isScrolled ? 'top-4 left-1/2 -translate-x-1/2' : 'top-0 left-0 right-0'
-    }`}>
-      <div className={`transition-all duration-300 ease-in-out ${
-        isScrolled ? 'glass rounded-full shadow-lg border-white/10' : 'bg-transparent'
-      }`}>
-        <div className={`container mx-auto flex items-center justify-between ${isScrolled ? 'px-4 py-2' : 'px-6 py-4'}`}>
-          <div className="text-2xl font-bold gradient-text">
-            ZaidLab
-          </div>
-          
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative text-sm font-medium transition-colors duration-300 hover:text-purple-400 ${
-                  activeSection === item.id ? 'text-purple-400' : 'text-foreground/80'
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" />
-                )}
-              </button>
-            ))}
-          </div>
+    <nav className={`fixed z-50 top-0 left-0 right-0 transition-all duration-500 ease-in-out`}>
+      <div className={`flex justify-center transition-all duration-500 ease-in-out ${isScrolled ? 'pt-4' : 'pt-0'}`}>
+        <div className={`transition-all duration-500 ease-in-out ${isScrolled ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
+          <div className={`container mx-auto flex items-center justify-between ${isScrolled ? 'px-4 py-2 gap-x-6' : 'px-6 py-4'}`}>
+            <div className="text-2xl font-bold gradient-text">
+              ZaidLab
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-6">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative text-sm font-medium transition-colors duration-300 hover:text-purple-400 ${
+                    activeSection === item.id ? 'text-purple-400' : 'text-foreground/80'
+                  }`}
+                >
+                  {item.label}
+                  {activeSection === item.id && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" />
+                  )}
+                </button>
+              ))}
+            </div>
 
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
-            >
-              Get In Touch
-            </Button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Button 
+                onClick={() => scrollToSection('contact')}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
+              >
+                Get In Touch
+              </Button>
+            </div>
           </div>
         </div>
       </div>

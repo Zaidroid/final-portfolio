@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -68,6 +67,9 @@ const Hero = () => {
         </div>
         <div className="parallax-effect absolute top-1/2 right-1/3 w-12 h-12" data-speed="-5">
           <div className="w-full h-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 rotate-12 animate-glow" />
+        </div>
+        <div className="parallax-effect absolute bottom-1/4 left-1/3 w-14 h-14" data-speed="12">
+          <div className="w-full h-full border-2 border-blue-500/20 animate-rotate-3d" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
         </div>
       </div>
       

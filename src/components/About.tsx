@@ -1,16 +1,18 @@
 
-import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import CountUp from './CountUp';
 
 const About = () => {
   const skills = [
-    { name: 'React/Next.js', level: 95 },
-    { name: 'Node.js/Express', level: 90 },
-    { name: 'TypeScript', level: 88 },
-    { name: 'Python/Django', level: 85 },
-    { name: 'AWS/Cloud', level: 82 },
-    { name: 'Database Design', level: 90 },
+    { name: 'React/Next.js' },
+    { name: 'Node.js/Express' },
+    { name: 'TypeScript' },
+    { name: 'Python/Django' },
+    { name: 'AWS/Cloud' },
+    { name: 'Database Design' },
+    { name: 'Tailwind CSS' },
+    { name: 'GraphQL' },
+    { name: 'Docker' },
   ];
 
   const experiences = [
@@ -46,57 +48,58 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+        <div className="grid lg:grid-cols-1 gap-16 items-start">
+          {/* Experience Timeline */}
+          <div className="animate-slide-in-right">
+            <h3 className="text-3xl font-bold mb-12 text-foreground text-center">My Journey</h3>
+            <div className="relative max-w-2xl mx-auto">
+              {/* Vertical line */}
+              <div className="absolute left-4 top-0 h-full w-0.5 bg-border -z-10"></div>
+              <div className="space-y-12">
+                {experiences.map((exp, index) => (
+                  <div key={index} className="relative pl-12">
+                    <div className="absolute left-4 top-1 -translate-x-1/2">
+                      <div className="h-4 w-4 bg-background border-2 border-primary rounded-full"></div>
+                    </div>
+                    <Card className="hover-glow card-3d" style={{ animationDelay: `${index * 0.1}s` }}>
+                      <CardContent className="p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                          <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold w-fit">
+                            {exp.year}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-xl font-semibold text-foreground mb-1">{exp.title}</h4>
+                            <p className="text-purple-400 font-medium mb-2">{exp.company}</p>
+                            <p className="text-muted-foreground">{exp.description}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
           {/* Skills Section */}
-          <div className="animate-slide-in-left flex flex-col">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">Technical Skills</h3>
-            <Card className="flex-grow">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {skills.map((skill, index) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-muted-foreground font-medium text-sm">{skill.name}</span>
-                        <span className="text-purple-400 font-semibold text-sm">{skill.level}%</span>
-                      </div>
-                      <Progress 
-                        value={skill.level} 
-                        className="h-2 bg-secondary" 
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      />
+          <div className="animate-slide-in-left mt-8">
+            <h3 className="text-3xl font-bold mb-8 text-foreground text-center">Technical Skills</h3>
+            <Card className="max-w-3xl mx-auto">
+              <CardContent className="p-8">
+                <div className="flex flex-wrap justify-center gap-4">
+                  {skills.map((skill) => (
+                    <div key={skill.name} className="glass text-foreground font-medium px-4 py-2 rounded-full text-sm hover-glow transition-all cursor-default border border-transparent hover:border-purple-500/50">
+                      {skill.name}
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
           </div>
-
-          {/* Experience Timeline */}
-          <div className="animate-slide-in-right flex flex-col">
-            <h3 className="text-2xl font-bold mb-8 text-foreground">Experience</h3>
-            <div className="space-y-6 flex-grow">
-              {experiences.map((exp, index) => (
-                <Card key={exp.year} className="hover-glow card-3d" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                        {exp.year}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl font-semibold text-foreground mb-1">{exp.title}</h4>
-                        <p className="text-purple-400 font-medium mb-2">{exp.company}</p>
-                        <p className="text-muted-foreground">{exp.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Personal Info */}
-        <div className="mt-16 text-center">
+        <div className="mt-20 text-center">
           <Card className="p-8 rounded-2xl max-w-4xl mx-auto hover-glow animate-scale-in">
             <div className="grid md:grid-cols-3 gap-8">
               <div>
