@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -104,9 +103,8 @@ const Projects = () => {
                 onClick={() => setFilter(category.id)}
                 variant={filter === category.id ? "default" : "outline"}
                 className={`transition-all duration-300 ${
-                  filter === category.id
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                    : 'border-purple-500 text-purple-400 hover:bg-purple-500/10'
+                  filter !== category.id
+                    && 'border-purple-500 text-purple-400 hover:bg-purple-500/10'
                 }`}
               >
                 {category.label}
@@ -129,7 +127,7 @@ const Projects = () => {
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {project.featured && (
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
                     Featured
                   </div>
                 )}

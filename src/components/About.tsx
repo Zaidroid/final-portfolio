@@ -48,13 +48,13 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Skills Section */}
           <div className="animate-slide-in-left">
-            <h3 className="text-2xl font-bold mb-8 text-white">Technical Skills</h3>
-            <div className="space-y-6">
+            <h3 className="text-2xl font-bold mb-6 text-white">Technical Skills</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
               {skills.map((skill, index) => (
-                <div key={skill.name} className="group">
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-300 font-medium">{skill.name}</span>
-                    <span className="text-purple-400 font-semibold">{skill.level}%</span>
+                <div key={skill.name}>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-gray-300 font-medium text-sm">{skill.name}</span>
+                    <span className="text-purple-400 font-semibold text-sm">{skill.level}%</span>
                   </div>
                   <Progress 
                     value={skill.level} 
@@ -74,7 +74,7 @@ const About = () => {
                 <Card key={exp.year} className="glass hover-glow card-3d" style={{ animationDelay: `${index * 0.2}s` }}>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
                         {exp.year}
                       </div>
                       <div className="flex-1">
