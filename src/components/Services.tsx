@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, Smartphone, Globe, Database, Cloud, Zap } from 'lucide-react';
 
@@ -59,10 +60,16 @@ const Services = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white w-fit group-hover:scale-110 transition-transform duration-300">
+                <div
+                  className="mx-auto mb-4 p-3 rounded-full w-fit group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    background: `linear-gradient(to right, var(--color-primary), var(--color-accent))`,
+                    color: `var(--color-surface)`
+                  }}
+                >
                   {service.icon}
                 </div>
-                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-purple-400 transition-colors duration-300">
+                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-[var(--color-primary)] transition-colors duration-300">
                   {service.title}
                 </CardTitle>
               </CardHeader>
@@ -73,7 +80,7 @@ const Services = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
                     <li key={feature} className="text-sm text-muted-foreground/80 flex items-center justify-center gap-2">
-                      <div className="w-1 h-1 bg-purple-400 rounded-full" />
+                      <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full" />
                       {feature}
                     </li>
                   ))}
@@ -92,7 +99,7 @@ const Services = () => {
             </p>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-full transition-all duration-300 hover-glow card-3d"
+              className="theme-button hover-glow card-3d"
             >
               Get Started Today
             </button>

@@ -48,7 +48,7 @@ export function generateColorPalette(accentColor: string, mode: 'light' | 'dark'
   return {
     primary: accentColor,
     primaryHover: darken(20),
-    secondary: lighten(40),
+    secondary: mode === 'light' ? '#e4e4e7' : '#3f3f46', // Using neutral grays for better contrast
     accent: lighten(60),
     surface: mode === 'light' ? '#ffffff' : '#1a1a1a',
     background: mode === 'light' ? '#fafafa' : '#0f0f0f',
