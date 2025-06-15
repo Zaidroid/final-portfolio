@@ -161,7 +161,7 @@ const Projects = () => {
                   </CardContent>
                 </Card>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl p-0 border-0 overflow-hidden">
+              <DialogContent className="sm:max-w-4xl p-0 border-0 overflow-hidden bg-zinc-950 rounded-lg">
                 <div className="grid md:grid-cols-[_1fr,1.5fr] group/dialog">
                     <div className="relative overflow-hidden h-64 md:h-auto">
                         <img 
@@ -172,7 +172,7 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/80" />
                     </div>
 
-                    <div className="p-8 flex flex-col space-y-4 overflow-y-auto bg-card">
+                    <div className="p-8 flex flex-col space-y-4 overflow-y-auto bg-zinc-900">
                         <div className="animate-slide-up" style={{animationDelay: '0.1s', animationFillMode: 'backwards'}}>
                             <DialogHeader>
                                 <DialogTitle className="text-3xl font-bold gradient-text mb-2">{project.title}</DialogTitle>
