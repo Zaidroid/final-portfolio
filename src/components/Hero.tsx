@@ -23,8 +23,18 @@ const Hero = () => {
       const parallaxElements = document.querySelectorAll<HTMLElement>('.parallax-effect');
       parallaxElements.forEach(el => {
         const speed = parseFloat(el.dataset.speed || '0');
-        el.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+        if (!el.classList.contains('hero-content-tilt')) {
+            el.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+        }
       });
+      
+      const heroContent = document.querySelector<HTMLElement>('.hero-content-tilt');
+      if (heroContent) {
+        const speed = parseFloat(heroContent.dataset.speed || '0');
+        const rotateY = x * -7; // tilt effect
+        const rotateX = y * 7;
+        heroContent.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
     };
     
     window.addEventListener('mousemove', handleMouseMove);
@@ -43,7 +53,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden [perspective:1000px]">
       {/* Parallax Wrappers for Animated background elements */}
       <div className="absolute inset-0">
         <div className="parallax-effect absolute top-20 left-20 w-72 h-72" data-speed="20">
@@ -73,22 +83,22 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="relative z-10 parallax-effect" data-speed="5">
+      <div className="relative z-10 parallax-effect hero-content-tilt transition-transform duration-100 ease-out" data-speed="5" style={{ transformStyle: 'preserve-3d' }}>
         <div className="container mx-auto px-6 text-center">
           <div className="animate-slide-up">
             <h1 className="text-6xl md:text-8xl font-bold mb-6">
               <span className="block gradient-text">Zaid</span>
-              <span className="block text-white">Salem</span>
+              <span className="block text-foreground">Salem</span>
             </h1>
             
             <div className="h-16 mb-8">
-              <p className="text-xl md:text-2xl text-gray-300 font-light">
+              <p className="text-xl md:text-2xl text-muted-foreground font-light">
                 {text}
                 <span className="animate-pulse">|</span>
               </p>
             </div>
             
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
               Passionate about creating innovative digital solutions that bridge the gap between 
               cutting-edge technology and exceptional user experiences.
             </p>
