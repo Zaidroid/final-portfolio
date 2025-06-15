@@ -1,4 +1,3 @@
-
 import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -10,7 +9,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project }: ProjectModalProps) => (
-  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border-0 bg-card/80 backdrop-blur-lg rounded-2xl overflow-hidden flex flex-col md:flex-row">
+  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row">
     <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group/dialog">
       <img
         src={project.image}
