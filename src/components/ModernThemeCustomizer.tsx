@@ -60,7 +60,7 @@ export function ModernThemeCustomizer({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-background rounded-md">
       <div className="flex items-center justify-between p-4 border-b">
         <h3 className="text-lg font-semibold">Customize Theme</h3>
         <DropdownMenu>
