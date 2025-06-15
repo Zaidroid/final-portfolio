@@ -56,7 +56,7 @@ export function ThemeControlPanel({ config, onChange, onReset, onSaveDefault, cu
   };
 
   return (
-    <div className="w-full max-h-[85vh] overflow-hidden flex flex-col bg-background text-foreground">
+    <div className="w-full max-h-[85vh] overflow-hidden flex flex-col text-foreground">
       <div className="flex items-center justify-between p-4 border-b border-border">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <Settings className="w-5 h-5" />
