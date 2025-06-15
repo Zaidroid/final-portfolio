@@ -162,50 +162,58 @@ const Projects = () => {
                   </CardContent>
                 </Card>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-3xl glass p-0">
-                <div className="relative">
-                  <img 
-                    src={`https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop&crop=center`}
-                    alt={project.title}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                </div>
-                <div className="p-6 pt-0 -mt-16 relative z-10">
-                  <DialogHeader className="mb-6">
-                    <DialogTitle className="text-3xl font-bold text-foreground">{project.title}</DialogTitle>
-                    <DialogDescription className="text-purple-400 capitalize">{project.category} App</DialogDescription>
-                  </DialogHeader>
-                  <p className="text-muted-foreground mb-6">
-                    {project.description}
-                  </p>
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-foreground mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span 
-                          key={tech} 
-                          className="px-3 py-1 bg-secondary text-secondary-foreground text-sm rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+              <DialogContent className="sm:max-w-4xl p-0 border-0 overflow-hidden">
+                <div className="grid md:grid-cols-[_1fr,1.5fr] group/dialog">
+                    <div className="relative overflow-hidden h-64 md:h-auto">
+                        <img 
+                            src={`https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop&crop=center`}
+                            alt={project.title}
+                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover/dialog:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/80" />
                     </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <Button asChild className="hover-glow">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" className="hover-glow">
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-2" />
-                        GitHub
-                      </a>
-                    </Button>
-                  </div>
+
+                    <div className="p-8 flex flex-col space-y-4 overflow-y-auto">
+                        <div className="animate-slide-up" style={{animationDelay: '0.1s', animationFillMode: 'backwards'}}>
+                            <DialogHeader>
+                                <DialogTitle className="text-3xl font-bold gradient-text mb-2">{project.title}</DialogTitle>
+                                <DialogDescription className="text-purple-400 capitalize -mt-2">{project.category} App</DialogDescription>
+                            </DialogHeader>
+                        </div>
+
+                        <p className="text-muted-foreground animate-slide-up" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
+                            {project.description}
+                        </p>
+
+                        <div className="animate-slide-up" style={{animationDelay: '0.3s', animationFillMode: 'backwards'}}>
+                            <h4 className="font-semibold text-foreground mb-3">Technologies Used</h4>
+                            <div className="flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                    <span 
+                                        key={tech} 
+                                        className="px-3 py-1 bg-secondary text-secondary-foreground text-sm rounded-full"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="mt-auto pt-6 flex gap-4 animate-slide-up" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
+                            <Button asChild className="theme-button hover-glow flex-1">
+                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                    Live Demo
+                                </a>
+                            </Button>
+                            <Button asChild variant="outline" className="hover-glow flex-1">
+                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                    <Github className="w-4 h-4 mr-2" />
+                                    GitHub
+                                </a>
+                            </Button>
+                        </div>
+                    </div>
                 </div>
               </DialogContent>
             </Dialog>
