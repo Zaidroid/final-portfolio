@@ -4,15 +4,20 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import { Palette, Settings, Moon, Sun, Download, Upload, AppWindow, LayoutPanelLeft } from 'lucide-react';
+import { Palette, Settings, Moon, Sun, Download, Upload, AppWindow, LayoutPanelLeft, Plus, Save, X } from 'lucide-react';
 import { ThemeConfig, accentColorPresets, defaultThemeConfig } from '@/lib/themeEngine';
 
 interface ThemeControlPanelProps {
   config: ThemeConfig;
   onChange: (config: ThemeConfig) => void;
+  onReset: () => void;
+  onSaveDefault: () => void;
+  customAccentColors: string[];
+  onAddCustomColor: (color: string) => void;
+  onRemoveCustomColor: (color: string) => void;
 }
 
-export function ThemeControlPanel({ config, onChange }: ThemeControlPanelProps) {
+export function ThemeControlPanel({ config, onChange, onReset, onSaveDefault, customAccentColors, onAddCustomColor, onRemoveCustomColor }: ThemeControlPanelProps) {
   const [activeTab, setActiveTab] = useState<'colors' | 'buttons' | 'layout'>('colors');
 
   const updateConfig = (updates: Partial<ThemeConfig>) => {
@@ -131,7 +136,7 @@ export function ThemeControlPanel({ config, onChange }: ThemeControlPanelProps) 
 
               <div>
                 <Label className="text-sm font-medium mb-3 block" style={{ color: 'var(--color-text)' }}>Accent Color</Label>
-                <div className="grid grid-cols-6 gap-2 mb-3">
+                <div className="grid grid-cols-8 gap-2 mb-3">
                   {accentColorPresets.map((preset) => (
                     <button
                       key={preset.value}
@@ -141,19 +146,43 @@ export function ThemeControlPanel({ config, onChange }: ThemeControlPanelProps) 
                       }`}
                       style={{ 
                         backgroundColor: preset.value,
-                        borderColor: 'var(--color-border)'
+                        borderColor: 'var(--color-border)',
+                        ringColor: 'var(--color-primary)'
                       }}
                       title={preset.name}
                     />
                   ))}
+                  {customAccentColors.map((color) => (
+                    <div key={color} className="relative group">
+                      <button
+                        onClick={() => handleColorChange(color)}
+                        className={`w-6 h-6 rounded border transition-transform hover:scale-110 ${
+                          config.accentColor === color ? 'scale-110 ring-2' : ''
+                        }`}
+                        style={{ 
+                          backgroundColor: color,
+                          borderColor: 'var(--color-border)',
+                          ringColor: 'var(--color-primary)'
+                        }}
+                        title={color}
+                      />
+                      <button onClick={() => onRemoveCustomColor(color)} className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Remove color">
+                          <X size={12} />
+                      </button>
+                    </div>
+                  ))}
                 </div>
-                <input
-                  type="color"
-                  value={config.accentColor}
-                  onChange={(e) => handleColorChange(e.target.value)}
-                  className="w-full h-8 rounded border cursor-pointer"
-                  style={{ borderColor: 'var(--color-border)' }}
-                />
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    value={config.accentColor}
+                    onChange={(e) => handleColorChange(e.target.value)}
+                    className="w-full h-8 p-0 border-0 rounded cursor-pointer bg-transparent"
+                  />
+                  <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => onAddCustomColor(config.accentColor)} title="Add to presets">
+                    <Plus className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           )}
@@ -239,7 +268,7 @@ export function ThemeControlPanel({ config, onChange }: ThemeControlPanelProps) 
         </div>
       </div>
 
-      <div className="p-3 border-t flex gap-2 text-xs" style={{ borderColor: 'var(--color-border)', backgroundColor: 'color-mix(in srgb, var(--color-surface) 50%, var(--color-background) 50%)' }}>
+      <div className="p-3 border-t flex flex-wrap gap-2 text-xs" style={{ borderColor: 'var(--color-border)', backgroundColor: 'color-mix(in srgb, var(--color-surface) 50%, var(--color-background) 50%)' }}>
         <Button
           variant="outline"
           size="sm"
@@ -271,10 +300,19 @@ export function ThemeControlPanel({ config, onChange }: ThemeControlPanelProps) 
         <Button
           variant="outline"
           size="sm"
-          onClick={() => onChange(defaultThemeConfig)}
+          onClick={onReset}
           className="text-xs h-7"
         >
           Reset
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onSaveDefault}
+          className="flex items-center gap-1 text-xs h-7"
+        >
+          <Save className="w-3 h-3" />
+          Save as Default
         </Button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { ThemeControlPanel } from './ThemeControlPanel';
 import { useAdvancedTheme } from '@/hooks/useAdvancedTheme';
 
 export function AdvancedThemeToggle() {
-  const { config, updateTheme } = useAdvancedTheme();
+  const { config, updateTheme, resetTheme, saveConfigAsDefault, customAccentColors, addCustomAccentColor, removeCustomAccentColor } = useAdvancedTheme();
 
   return (
     <Popover>
@@ -28,6 +28,11 @@ export function AdvancedThemeToggle() {
         <ThemeControlPanel
           config={config}
           onChange={updateTheme}
+          onReset={resetTheme}
+          onSaveDefault={saveConfigAsDefault}
+          customAccentColors={customAccentColors}
+          onAddCustomColor={addCustomAccentColor}
+          onRemoveCustomColor={removeCustomAccentColor}
         />
       </PopoverContent>
     </Popover>

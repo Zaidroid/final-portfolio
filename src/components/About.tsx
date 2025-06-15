@@ -80,7 +80,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-slide-up">
+        <div className="text-center mb-24 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">About Me</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A passionate developer with 5+ years of experience creating digital solutions 
@@ -110,11 +110,11 @@ const About = () => {
         </div>
 
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <Tabs defaultValue="journey" className="max-w-4xl mx-auto">
+            <Tabs defaultValue="services" className="max-w-4xl mx-auto">
               <TabsList className="grid w-full grid-cols-3 mb-8">
+                <TabsTrigger value="services">Services</TabsTrigger>
                 <TabsTrigger value="journey">My Journey</TabsTrigger>
                 <TabsTrigger value="skills">Technical Skills</TabsTrigger>
-                <TabsTrigger value="services">Our Services</TabsTrigger>
               </TabsList>
               <TabsContent value="journey" className="animate-scale-in">
                 <div className="relative max-w-2xl mx-auto">
@@ -159,7 +159,7 @@ const About = () => {
                   </Card>
               </TabsContent>
               <TabsContent value="services" className="animate-scale-in">
-                <Accordion type="single" collapsible className="w-full space-y-4">
+                <Accordion type="single" collapsible className="w-full grid md:grid-cols-2 gap-4">
                   {services.map((service, index) => (
                     <AccordionItem value={`item-${index}`} key={service.title} className="glass rounded-lg hover-glow border-none">
                       <AccordionTrigger className="p-6 text-left hover:no-underline">

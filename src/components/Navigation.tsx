@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { AdvancedThemeToggle } from './AdvancedThemeToggle';
@@ -55,7 +54,8 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
+    const targetId = sectionId === 'services' ? 'about' : sectionId;
+    const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
