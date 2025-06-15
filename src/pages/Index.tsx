@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import AboutTab from '@/components/tabs/AboutTab';
 import ServicesTab from '@/components/tabs/ServicesTab';
-import ProjectsTab from '@/components/tabs/ProjectsTab';
+import Projects from '@/components/Projects';
 import ContactTab from '@/components/tabs/ContactTab';
 
 const Index = () => {
@@ -35,7 +35,7 @@ const Index = () => {
             <ServicesTab />
           </TabsContent>
           <TabsContent value="projects">
-            <ProjectsTab />
+            <Projects />
           </TabsContent>
           <TabsContent value="contact">
             <ContactTab />
