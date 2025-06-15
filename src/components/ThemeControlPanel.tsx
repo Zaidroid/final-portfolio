@@ -146,8 +146,7 @@ export function ThemeControlPanel({ config, onChange, onClose }: ThemeControlPan
                         }`}
                         style={{ 
                           backgroundColor: preset.value,
-                          borderColor: 'var(--color-border)',
-                          ringColor: 'var(--color-primary)'
+                          borderColor: 'var(--color-border)'
                         }}
                         title={preset.name}
                       />
