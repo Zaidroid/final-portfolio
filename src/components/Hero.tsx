@@ -16,7 +16,7 @@ const Hero = () => {
   const [text, setText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const { x: clientX, y: clientY } = useMousePosition();
+  const { x: clientX, y: clientY, isIdle } = useMousePosition();
   
   useEffect(() => {
     const currentPhrase = phrases[phraseIndex];
@@ -50,20 +50,27 @@ const Hero = () => {
     if (clientX === 0 && clientY === 0) return;
 
     const animationFrameId = requestAnimationFrame(() => {
-      const x = (clientX / window.innerWidth - 0.5) * -1;
-      const y = (clientY / window.innerHeight - 0.5) * -1;
-      
       const heroContent = document.querySelector<HTMLElement>('.hero-content-tilt');
       if (heroContent) {
-        const speed = parseFloat(heroContent.dataset.speed || '0');
-        const rotateY = x * -7;
-        const rotateX = y * 7;
-        heroContent.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        if (isIdle) {
+          heroContent.style.transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1)';
+          heroContent.style.transform = 'translateX(0px) translateY(0px) rotateX(0deg) rotateY(0deg)';
+        } else {
+          heroContent.style.transition = 'transform 0.1s ease-out';
+          
+          const x = (clientX / window.innerWidth - 0.5) * -1;
+          const y = (clientY / window.innerHeight - 0.5) * -1;
+          
+          const speed = parseFloat(heroContent.dataset.speed || '0');
+          const rotateY = x * -7;
+          const rotateX = y * 7;
+          heroContent.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
       }
     });
     
     return () => cancelAnimationFrame(animationFrameId);
-  }, [clientX, clientY]);
+  }, [clientX, clientY, isIdle]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
