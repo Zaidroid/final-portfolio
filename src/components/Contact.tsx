@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -55,7 +54,7 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Get In Touch</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to start your next project? Let's discuss how we can work together 
             to bring your ideas to life.
           </p>
@@ -65,13 +64,13 @@ const Contact = () => {
           {/* Contact Form */}
           <Card className="glass hover-glow animate-slide-in-left">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-white">Send a Message</CardTitle>
+              <CardTitle className="text-2xl font-bold text-foreground">Send a Message</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
                       Name *
                     </label>
                     <Input
@@ -80,12 +79,11 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
                       Email *
                     </label>
                     <Input
@@ -95,14 +93,13 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-muted-foreground mb-2">
                     Subject *
                   </label>
                   <Input
@@ -111,13 +108,12 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
                     placeholder="Project inquiry"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
                     Message *
                   </label>
                   <Textarea
@@ -127,7 +123,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-400 resize-none"
+                    className="resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -146,8 +142,8 @@ const Contact = () => {
           <div className="animate-slide-in-right">
             <div className="space-y-8">
               <div className="glass p-8 rounded-2xl hover-glow">
-                <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-                <p className="text-gray-300 mb-8 leading-relaxed">
+                <h3 className="text-2xl font-bold text-foreground mb-6">Let's Connect</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
                   Whether you have a project in mind, need technical consultation, 
                   or just want to say hello, I'd love to hear from you. Let's create 
                   something amazing together!
@@ -158,8 +154,8 @@ const Contact = () => {
                     <div key={info.title} className="flex items-center gap-4">
                       <span className="text-2xl">{info.icon}</span>
                       <div>
-                        <h4 className="text-white font-semibold">{info.title}</h4>
-                        <p className="text-gray-300">{info.value}</p>
+                        <h4 className="text-foreground font-semibold">{info.title}</h4>
+                        <p className="text-muted-foreground">{info.value}</p>
                       </div>
                     </div>
                   ))}
@@ -168,7 +164,7 @@ const Contact = () => {
 
               {/* Social Links */}
               <div className="glass p-8 rounded-2xl hover-glow">
-                <h3 className="text-xl font-bold text-white mb-6">Follow Me</h3>
+                <h3 className="text-xl font-bold text-foreground mb-6">Follow Me</h3>
                 <div className="flex gap-4">
                   {['LinkedIn', 'GitHub', 'Twitter', 'Instagram'].map((platform) => (
                     <button
@@ -187,7 +183,7 @@ const Contact = () => {
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
                   <span className="text-green-400 font-semibold">Available for new projects</span>
                 </div>
-                <p className="text-gray-300 text-sm">
+                <p className="text-muted-foreground text-sm">
                   Currently accepting new clients for 2024
                 </p>
               </div>

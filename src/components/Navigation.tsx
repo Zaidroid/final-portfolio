@@ -71,9 +71,9 @@ const Navigation = () => {
 
   return (
     <header className="fixed z-50 top-0 left-0 right-0">
-      <div className={`flex justify-center transition-all duration-500 ease-in-out ${isScrolled && !isMenuOpen ? 'pt-4' : 'pt-0'}`}>
-        <div className={`transition-all duration-500 ease-in-out ${isScrolled && !isMenuOpen ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
-          <div className={`container mx-auto flex items-center justify-between ${isScrolled && !isMenuOpen ? 'px-4 py-2 gap-x-6' : 'px-6 py-4'}`}>
+      <div className={`flex justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isScrolled && !isMenuOpen ? 'pt-4' : 'pt-0'}`}>
+        <div className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isScrolled && !isMenuOpen ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
+          <div className={`container mx-auto flex items-center justify-between transition-all ${isScrolled && !isMenuOpen ? 'px-4 py-2 gap-x-6' : 'px-6 py-4'}`}>
             <div className="text-2xl font-bold gradient-text">
               ZaidLab
             </div>

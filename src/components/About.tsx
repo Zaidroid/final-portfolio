@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import CountUp from './CountUp';
 
@@ -48,9 +47,9 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-1 gap-16 items-start">
+        <div className="space-y-12">
           {/* Experience Timeline */}
-          <div className="animate-slide-in-right">
+          <Card className="p-6 sm:p-8 md:p-12 animate-slide-in-right hover-glow">
             <h3 className="text-3xl font-bold mb-12 text-foreground text-center">My Journey</h3>
             <div className="relative max-w-2xl mx-auto">
               {/* Vertical line */}
@@ -79,40 +78,34 @@ const About = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </Card>
           
-          {/* Skills Section */}
-          <div className="animate-slide-in-left mt-8">
-            <h3 className="text-3xl font-bold mb-8 text-foreground text-center">Technical Skills</h3>
-            <Card className="max-w-3xl mx-auto">
-              <CardContent className="p-8">
-                <div className="flex flex-wrap justify-center gap-4">
+          {/* Skills & Stats Section */}
+          <Card className="p-6 sm:p-8 md:p-12 animate-slide-in-left hover-glow">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-3xl font-bold mb-8 text-foreground text-center lg:text-left">Technical Skills</h3>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                   {skills.map((skill) => (
                     <div key={skill.name} className="glass text-foreground font-medium px-4 py-2 rounded-full text-sm hover-glow transition-all cursor-default border border-transparent hover:border-purple-500/50">
                       {skill.name}
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Personal Info */}
-        <div className="mt-20 text-center">
-          <Card className="p-8 rounded-2xl max-w-4xl mx-auto hover-glow animate-scale-in">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={50} suffix="+" /></h4>
-                <p className="text-muted-foreground">Projects Completed</p>
               </div>
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={5} suffix="+" /></h4>
-                <p className="text-muted-foreground">Years Experience</p>
-              </div>
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={100} suffix="%" /></h4>
-                <p className="text-muted-foreground">Client Satisfaction</p>
+              <div className="grid grid-cols-3 gap-4 text-center mt-8 lg:mt-0">
+                  <div>
+                    <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={50} suffix="+" /></h4>
+                    <p className="text-muted-foreground">Projects Completed</p>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={5} suffix="+" /></h4>
+                    <p className="text-muted-foreground">Years Experience</p>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={100} suffix="%" /></h4>
+                    <p className="text-muted-foreground">Client Satisfaction</p>
+                  </div>
               </div>
             </div>
           </Card>
