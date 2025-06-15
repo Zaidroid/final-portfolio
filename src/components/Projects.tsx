@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -173,7 +172,7 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/80" />
                     </div>
 
-                    <div className="p-8 flex flex-col space-y-4 overflow-y-auto bg-background">
+                    <div className="p-8 flex flex-col space-y-4 overflow-y-auto bg-card">
                         <div className="animate-slide-up" style={{animationDelay: '0.1s', animationFillMode: 'backwards'}}>
                             <DialogHeader>
                                 <DialogTitle className="text-3xl font-bold gradient-text mb-2">{project.title}</DialogTitle>
