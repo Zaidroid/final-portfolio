@@ -13,7 +13,7 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: 'var(--spacing, 2rem)',
 			screens: {
 				'2xl': '1400px'
 			}
@@ -65,9 +65,9 @@ export default {
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: 'var(--radius, 8px)',
+				md: 'calc(var(--radius, 8px) - 2px)',
+				sm: 'calc(var(--radius, 8px) - 4px)'
 			},
 			keyframes: {
 				'accordion-down': {

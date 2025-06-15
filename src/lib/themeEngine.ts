@@ -13,7 +13,7 @@ export const defaultThemeConfig: ThemeConfig = {
   accentColor: '#8b5cf6',
   buttonStyle: 'rounded',
   borderRadius: 8,
-  spacing: 16,
+  spacing: 32,
   shadowIntensity: 0.15,
 };
 

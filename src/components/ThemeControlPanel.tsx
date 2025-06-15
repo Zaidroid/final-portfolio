@@ -241,9 +241,9 @@ export function ThemeControlPanel({ config, onChange, onReset, onSaveDefault, cu
                 <Slider
                   value={[config.spacing]}
                   onValueChange={([value]) => updateConfig({ spacing: value })}
-                  max={24}
-                  min={8}
-                  step={2}
+                  max={64}
+                  min={16}
+                  step={4}
                   className="mb-1"
                 />
                 <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{config.spacing}px</div>
