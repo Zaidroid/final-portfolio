@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import CountUp from './CountUp';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -112,7 +111,7 @@ const About = () => {
 
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Tabs defaultValue="journey" className="max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-3 mb-8 glass">
+              <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="journey">My Journey</TabsTrigger>
                 <TabsTrigger value="skills">Technical Skills</TabsTrigger>
                 <TabsTrigger value="services">Our Services</TabsTrigger>
