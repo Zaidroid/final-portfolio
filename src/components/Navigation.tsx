@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from './ThemeToggle';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,22 +9,23 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
       
-      // Update active section based on scroll position
       const sections = ['home', 'about', 'services', 'projects', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
+      let currentSection = 'home';
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            currentSection = sectionId;
+            break;
+          }
         }
-        return false;
-      });
-      
-      if (current) {
-        setActiveSection(current);
       }
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -46,22 +48,24 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'glass border-b border-white/10' : 'bg-transparent'
+    <nav className={`fixed z-50 transition-all duration-300 ease-in-out ${
+      isScrolled ? 'top-4 left-1/2 -translate-x-1/2' : 'top-0 left-0 right-0'
     }`}>
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className={`transition-all duration-300 ease-in-out ${
+        isScrolled ? 'glass rounded-full shadow-lg border-white/10' : 'bg-transparent'
+      }`}>
+        <div className={`container mx-auto flex items-center justify-between ${isScrolled ? 'px-4 py-2' : 'px-6 py-4'}`}>
           <div className="text-2xl font-bold gradient-text">
             ZaidLab
           </div>
           
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`relative text-sm font-medium transition-colors duration-300 hover:text-purple-400 ${
-                  activeSection === item.id ? 'text-purple-400' : 'text-gray-300'
+                  activeSection === item.id ? 'text-purple-400' : 'text-foreground/80'
                 }`}
               >
                 {item.label}
@@ -72,12 +76,15 @@ const Navigation = () => {
             ))}
           </div>
 
-          <Button 
-            onClick={() => scrollToSection('contact')}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
-          >
-            Get In Touch
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button 
+              onClick={() => scrollToSection('contact')}
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
+            >
+              Get In Touch
+            </Button>
+          </div>
         </div>
       </div>
     </nav>

@@ -47,7 +47,7 @@ const Services = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Services</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Comprehensive technology solutions to bring your ideas to life and accelerate your business growth.
           </p>
         </div>
@@ -56,24 +56,24 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={service.title} 
-              className="glass hover-glow card-3d group cursor-pointer animate-scale-in"
+              className="hover-glow card-3d group cursor-pointer animate-scale-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="text-center pb-4">
                 <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white w-fit group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <CardTitle className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors duration-300">
+                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-purple-400 transition-colors duration-300">
                   {service.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
-                    <li key={feature} className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                    <li key={feature} className="text-sm text-muted-foreground/80 flex items-center justify-center gap-2">
                       <div className="w-1 h-1 bg-purple-400 rounded-full" />
                       {feature}
                     </li>
@@ -86,9 +86,9 @@ const Services = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16 animate-slide-up">
-          <div className="glass p-8 rounded-2xl max-w-2xl mx-auto hover-glow">
+          <Card className="p-8 rounded-2xl max-w-2xl mx-auto hover-glow">
             <h3 className="text-2xl font-bold mb-4 gradient-text">Ready to Start Your Project?</h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-muted-foreground mb-6">
               Let's discuss how we can bring your vision to life with cutting-edge technology.
             </p>
             <button 
