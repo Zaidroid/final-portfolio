@@ -10,7 +10,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project }: ProjectModalProps) => (
-  <DialogContent className="sm:max-w-4xl w-[95vw] max-h-[90vh] p-0 overflow-hidden">
+  <DialogContent className="sm:max-w-4xl w-[95vw] max-h-[90vh] p-0 overflow-hidden bg-white dark:bg-gray-900">
     <div className="flex flex-col h-full max-h-[90vh]">
       {/* Header Image Section */}
       <div className="relative h-64 sm:h-80 w-full overflow-hidden">
@@ -27,35 +27,31 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
         )}
       </div>
 
-      {/* Content Section */}
-      <div className="flex-1 p-6 sm:p-8 space-y-6 overflow-y-auto bg-background text-foreground">
+      {/* Content Section with Solid Background */}
+      <div className="flex-1 p-6 sm:p-8 space-y-6 overflow-y-auto bg-white dark:bg-gray-900">
         {/* Project Header */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <Badge 
               variant="secondary" 
-              className="border-0"
-              style={{ 
-                backgroundColor: 'var(--color-secondary)',
-                color: 'var(--color-text)'
-              }}
+              className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-0"
             >
               {project.category} Application
             </Badge>
           </div>
           
-          <DialogTitle className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
+          <DialogTitle className="text-2xl sm:text-3xl font-bold leading-tight text-gray-900 dark:text-white">
             {project.title}
           </DialogTitle>
           
-          <DialogDescription className="text-base sm:text-lg leading-relaxed text-muted-foreground">
+          <DialogDescription className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             {project.description}
           </DialogDescription>
         </div>
 
         {/* Technologies Section */}
         <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-foreground">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
             Technologies Used
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -63,12 +59,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
               <Badge 
                 key={tech} 
                 variant="outline" 
-                className="px-3 py-1.5 transition-colors"
-                style={{
-                  backgroundColor: 'var(--color-surface)',
-                  borderColor: 'var(--color-border)',
-                  color: 'var(--color-text)'
-                }}
+                className="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
               >
                 {tech}
               </Badge>
@@ -77,7 +68,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-border">
+        <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
           {project.liveUrl && project.liveUrl !== '#' && (
             <Button 
               asChild 
