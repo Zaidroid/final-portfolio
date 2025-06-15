@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from './ThemeToggle';
+import { AdvancedThemeToggle } from './AdvancedThemeToggle';
 import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
@@ -83,8 +84,9 @@ const Navigation = () => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`relative text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    activeSection === item.id ? 'nav-active' : 'text-foreground/80 hover:text-foreground'
+                    activeSection === item.id ? 'nav-active' : 'hover:text-[var(--color-primary)]'
                   }`}
+                  style={{ color: activeSection === item.id ? 'var(--color-primary)' : 'var(--color-text)' }}
                 >
                   {item.label}
                 </button>
@@ -92,7 +94,7 @@ const Navigation = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <ThemeToggle />
+              <AdvancedThemeToggle />
               <Button 
                 onClick={() => scrollToSection('contact')}
                 className="hidden sm:inline-flex theme-button hover-glow"
@@ -111,7 +113,8 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed top-0 left-0 w-full h-full bg-background/95 backdrop-blur-lg z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`md:hidden fixed top-0 left-0 w-full h-full z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+           style={{ background: 'color-mix(in srgb, var(--color-background) 95%, transparent 5%)', backdropFilter: 'blur(12px)' }}>
         <div className="container h-full mx-auto flex flex-col justify-center items-center gap-y-8">
             {navItems.map((item) => (
                 <button
@@ -121,8 +124,9 @@ const Navigation = () => {
                     setIsMenuOpen(false);
                 }}
                 className={`relative text-2xl font-medium transition-all duration-300 hover:scale-110 ${
-                    activeSection === item.id ? 'nav-active' : 'text-foreground/80 hover:text-foreground'
+                    activeSection === item.id ? 'nav-active' : 'hover:text-[var(--color-primary)]'
                 }`}
+                style={{ color: activeSection === item.id ? 'var(--color-primary)' : 'var(--color-text)' }}
                 >
                 {item.label}
                 </button>

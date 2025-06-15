@@ -3,76 +3,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* Dynamic Theme System - CSS Variables are injected by themeEngine.ts */
 
 @layer base {
   :root {
-    /* Default theme variables - will be overridden by theme system */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 263 70% 50%;
-    --radius: 0.5rem;
+    /* Default Tailwind variables - will be overridden by theme system */
+    --background: var(--color-background);
+    --foreground: var(--color-text);
+    --card: var(--color-surface);
+    --card-foreground: var(--color-text);
+    --popover: var(--color-surface);
+    --popover-foreground: var(--color-text);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-surface);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-text);
+    --muted: var(--color-secondary);
+    --muted-foreground: var(--color-text-muted);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-text);
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+    --border: var(--color-border);
+    --input: var(--color-border);
+    --ring: var(--color-primary);
+    --radius: var(--border-radius);
 
-    --sidebar-background: 240 5.9% 95%;
-    --sidebar-foreground: 240 5.9% 10%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 90%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 240 3.7% 85%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar variables for compatibility */
+    --sidebar-background: var(--color-surface);
+    --sidebar-foreground: var(--color-text);
+    --sidebar-primary: var(--color-primary);
+    --sidebar-primary-foreground: var(--color-surface);
+    --sidebar-accent: var(--color-accent);
+    --sidebar-accent-foreground: var(--color-text);
+    --sidebar-border: var(--color-border);
+    --sidebar-ring: var(--color-primary);
   }
 
-  /* Theme-specific background gradients */
-  .theme-classic-light body {
-    background: linear-gradient(135deg, #FFFFFF 0%, #F4F4F4 100%);
-  }
-
-  .theme-midnight-dark body {
-    background: linear-gradient(135deg, #0D1117 0%, #161B22 50%, #21262D 100%);
-  }
-
-  .theme-solar-flare body {
-    background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 50%, #FFCC80 100%);
-  }
-
-  .theme-oceanic-twilight body {
-    background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 50%, #4DD0E1 100%);
-  }
-
-  .theme-forest-whisper body {
-    background: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 50%, #C5E1A5 100%);
-  }
-
-  .theme-monochrome-minimal body {
-    background: linear-gradient(135deg, #FAFAFA 0%, #F0F0F0 100%);
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--color-background);
+    color: var(--color-text);
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dynamic gradient backgrounds based on theme */
+  .light-mode body {
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+  }
+
+  .dark-mode body {
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 50%, color-mix(in srgb, var(--color-background) 80%, var(--color-primary) 20%) 100%);
   }
 
   html {
@@ -81,73 +66,70 @@
 }
 
 @layer components {
+  /* Dynamic glass effect */
   .glass {
-    @apply bg-background/80 backdrop-blur-md border;
+    background: color-mix(in srgb, var(--color-surface) 80%, transparent 20%);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent 50%);
+    transition: all 0.3s ease;
   }
 
-  /* Theme-specific glass effects */
-  .theme-midnight-dark .glass {
-    @apply bg-white/5 border-white/10;
-  }
-  
-  .theme-solar-flare .glass {
-    @apply bg-yellow-50/80 border-orange-200/50;
-  }
-  
-  .theme-oceanic-twilight .glass {
-    @apply bg-cyan-50/80 border-teal-200/50;
-  }
-  
-  .theme-forest-whisper .glass {
-    @apply bg-green-50/80 border-green-200/50;
-  }
-  
-  .theme-monochrome-minimal .glass {
-    @apply bg-gray-50/80 border-gray-200/50;
-  }
-  
+  /* Dynamic gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, var(--color-hero-gradient-from), var(--color-hero-gradient-to));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
-  
+
+  /* Enhanced hover effects with theme colors */
   .hover-glow {
-    @apply transition-all duration-300;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 50%), transparent);
   }
-  
+
   .hover-glow:hover {
-    box-shadow: 0 20px 25px -5px var(--color-primary), 0 10px 10px -5px var(--color-primary);
+    box-shadow: 
+      0 20px 25px -5px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 100%), transparent),
+      0 10px 10px -5px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 80%), transparent);
     transform: translateY(-2px);
   }
-  
+
+  /* Dynamic card effects */
   .card-3d {
-    @apply transform-gpu transition-all duration-300 hover:scale-105 hover:-translate-y-2;
     transform-style: preserve-3d;
+    transition: all 0.3s ease;
   }
-  
+
+  .card-3d:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 100%), transparent);
+  }
+
+  /* Floating elements with theme-aware shadows */
   .floating-element {
-    @apply animate-float;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 60%), transparent));
   }
 
   /* Theme-aware buttons */
   .theme-button {
     background: var(--color-primary);
-    color: var(--color-bg);
-    border-radius: var(--button-radius, 6px);
+    color: var(--color-surface);
+    border-radius: var(--button-radius);
+    padding: var(--button-padding);
     transition: all 0.3s ease;
+    border: none;
   }
 
   .theme-button:hover {
-    background: var(--color-accent);
-    box-shadow: 0 8px 25px var(--color-primary);
+    background: var(--color-primary-hover);
+    box-shadow: 0 8px 25px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 100%), transparent);
     transform: translateY(-2px);
   }
 
-  /* Navigation active state */
+  /* Navigation active state with dynamic colors */
   .nav-active {
     color: var(--color-primary) !important;
     position: relative;
@@ -161,34 +143,71 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    border-radius: 1px;
+    border-radius: var(--border-radius);
   }
 
-  /* Brand title styling */
+  /* Brand title with dynamic gradient */
   .brand-title {
-    background: linear-gradient(135deg, var(--color-gradient-from), var(--color-gradient-to));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     font-weight: 800;
   }
+
+  /* Enhanced input styles */
+  .theme-input {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+  }
+
+  .theme-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  /* Dynamic borders and dividers */
+  .theme-border {
+    border-color: var(--color-border);
+  }
+
+  .theme-divider {
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+    height: 1px;
+  }
 }
 
-/* Custom scrollbar with theme awareness */
+/* Enhanced scrollbar with theme colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface, #1a1a2e);
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary, #8b5cf6);
-  border-radius: 4px;
+  background: var(--color-primary);
+  border-radius: var(--border-radius);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent, #7c3aed);
+  background: var(--color-primary-hover);
+}
+
+/* Selection colors */
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: var(--color-text);
+}
+
+/* Focus indicators */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius);
 }
