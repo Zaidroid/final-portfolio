@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Project, Category } from '@/types/project';
@@ -16,7 +15,7 @@ const Projects = () => {
       id: 1,
       title: 'PalTraffic - Real-Time Traffic Analysis',
       description: 'An intelligent web application that leverages Natural Language Processing (NLP) to analyze social media messages and real-time reports, providing up-to-the-minute traffic status updates for checkpoints across Palestine. Features an interactive map for easy visualization.',
-      image: '/api/placeholder/600/400',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
       technologies: ['React', 'Python', 'NLTK', 'Flask', 'Leaflet.js', 'REST APIs'],
       category: 'ai',
       liveUrl: '#',
@@ -27,7 +26,7 @@ const Projects = () => {
       id: 2,
       title: 'Injaz - The All-in-One Life OS',
       description: 'A comprehensive, full-stack productivity system designed as a personal life operating system. It integrates modules for health tracking, task management, journaling, personal finance, and goal setting within a single, intuitive interface.',
-      image: '/api/placeholder/600/400',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop',
       technologies: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'TypeScript', 'Chart.js'],
       category: 'web',
       liveUrl: '#',
@@ -38,7 +37,7 @@ const Projects = () => {
       id: 3,
       title: 'AI CV Personalizer & Career Toolkit',
       description: 'An AI-powered platform that automates CV customization by intelligently analyzing a user\'s resume against a job description. It includes a suite of AI tools for skill gap analysis, interview preparation, and career guidance.',
-      image: '/api/placeholder/600/400',
+      image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=800&auto=format&fit=crop',
       technologies: ['React', 'FastAPI', 'OpenAI API', 'Docker', 'PDF.js', 'Vector DB'],
       category: 'ai',
       liveUrl: '#',
@@ -49,7 +48,7 @@ const Projects = () => {
       id: 4,
       title: 'Khetyar - The AI Storyteller',
       description: 'An innovative AI narrator that generates and curates interactive, personalized stories about Palestinian history and culture. Users can influence the narrative by selecting a time period, location, and character gender for an immersive experience.',
-      image: '/api/placeholder/600/400',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop',
       technologies: ['React', 'Python', 'LLM', 'TTS API', 'Firebase', 'Next.js'],
       category: 'ai',
       liveUrl: '#',

@@ -29,33 +29,15 @@ const AnimatedBackground = () => {
       const parallaxElements = document.querySelectorAll<HTMLElement>('.parallax-bg-element');
       
       parallaxElements.forEach(el => {
-        let transform = 'translateX(0px) translateY(0px) scale(1)';
+        let transform = 'translateX(0px) translateY(0px)';
         let transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-out';
 
         if (!isIdle) {
           const speed = parseFloat(el.dataset.speed || '0');
           const parallaxTranslateX = x * speed;
           const parallaxTranslateY = y * speed;
-
-          const rect = el.getBoundingClientRect();
-          // Skip elements that are not rendered or off-screen.
-          if (rect.width === 0 && rect.height === 0) return; 
-
-          const elCenterX = rect.left + rect.width / 2;
-          const elCenterY = rect.top + rect.height / 2;
           
-          const distance = Math.sqrt(Math.pow(clientX - elCenterX, 2) + Math.pow(clientY - elCenterY, 2));
-          
-          const maxDistance = 250;
-          let scale = 1;
-          
-          if (distance < maxDistance) {
-            // Proximity is a value from 0 (at maxDistance) to 1 (at 0 distance).
-            const proximity = 1 - (distance / maxDistance);
-            scale = 1 + proximity * 0.2; // Scale up to 1.2
-          }
-
-          transform = `translateX(${parallaxTranslateX}px) translateY(${parallaxTranslateY}px) scale(${scale})`;
+          transform = `translateX(${parallaxTranslateX}px) translateY(${parallaxTranslateY}px)`;
           transition = 'transform 0.1s ease-out, opacity 0.3s ease-out';
         }
 
