@@ -5,7 +5,10 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-const projects = [
+const Projects = () => {
+  const [filter, setFilter] = useState('all');
+
+  const projects = [
     {
       id: 1,
       title: 'E-Commerce Platform',
@@ -50,49 +53,69 @@ const projects = [
       githubUrl: '#',
       featured: true
     },
-];
+    {
+      id: 5,
+      title: 'Real Estate Platform',
+      description: 'Property listing and management platform with advanced search, virtual tours, and CRM integration.',
+      image: '/api/placeholder/600/400',
+      technologies: ['Vue.js', 'Laravel', 'MySQL', 'AWS S3', 'Maps API'],
+      category: 'web',
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    },
+    {
+      id: 6,
+      title: 'Crypto Trading Dashboard',
+      description: 'Real-time cryptocurrency trading dashboard with portfolio tracking and market analysis tools.',
+      image: '/api/placeholder/600/400',
+      technologies: ['React', 'WebSocket', 'Chart.js', 'Express', 'Redis'],
+      category: 'web',
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    }
+  ];
 
-const categories = [
-    { id: 'all', label: 'All' },
-    { id: 'web', label: 'Web' },
-    { id: 'mobile', label: 'Mobile' },
+  const categories = [
+    { id: 'all', label: 'All Projects' },
+    { id: 'web', label: 'Web Apps' },
+    { id: 'mobile', label: 'Mobile Apps' },
     { id: 'ai', label: 'AI/ML' }
-];
-
-const ProjectsTab = () => {
-  const [filter, setFilter] = useState('all');
+  ];
 
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.category === filter);
 
   return (
-    <div className="animate-fade-in">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2 gradient-text">Featured Projects</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my recent work.
+    <section id="projects" className="py-20 relative">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16 animate-slide-up">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Featured Projects</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            A showcase of my recent work spanning web applications, mobile apps, and AI-powered solutions.
           </p>
-        </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <Button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
                 variant={filter === category.id ? "default" : "outline"}
-                size="sm"
                 className={`transition-all duration-300 ${
                   filter !== category.id
-                    && 'border-purple-500/50 text-purple-400 hover:bg-purple-500/10'
+                    && 'border-purple-500 text-purple-400 hover:bg-purple-500/10'
                 }`}
               >
                 {category.label}
               </Button>
             ))}
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <Dialog key={project.id}>
               <DialogTrigger asChild>
@@ -104,23 +127,37 @@ const ProjectsTab = () => {
                     <img 
                       src={`https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&crop=center`}
                       alt={project.title}
-                      className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+                    {project.featured && (
+                      <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                        Featured
+                      </div>
+                    )}
                   </div>
                   
-                  <CardContent className="p-4">
-                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-purple-400 transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <div className="flex flex-wrap gap-1.5">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span 
                           key={tech} 
-                          className="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded-full"
+                          className="px-2 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full"
                         >
                           {tech}
                         </span>
                       ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-500/20 text-gray-400 text-xs rounded-full">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -174,8 +211,20 @@ const ProjectsTab = () => {
             </Dialog>
           ))}
         </div>
-    </div>
+
+        {/* View More Button */}
+        <div className="text-center mt-12 animate-slide-up">
+          <Button 
+            variant="outline"
+            size="lg"
+            className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-3 transition-all duration-300 hover-glow"
+          >
+            View All Projects on GitHub
+          </Button>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default ProjectsTab;
+export default Projects;
