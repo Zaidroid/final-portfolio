@@ -1,4 +1,3 @@
-
 import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -69,7 +68,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
-          {project.liveUrl && project.liveUrl !== '#' && (
+          {project.liveUrl && (
             <Button 
               asChild 
               size="lg" 
@@ -81,7 +80,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
               </a>
             </Button>
           )}
-          {project.githubUrl && project.githubUrl !== '#' && (
+          {project.githubUrl && (
             <Button 
               asChild 
               size="lg" 

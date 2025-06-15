@@ -89,6 +89,14 @@ const Hero = () => {
           <div className="w-full h-full animate-rotate-3d opacity-20" 
                style={{ border: `2px solid var(--color-secondary)`, animationDuration: '25s', animationDirection: 'reverse' }} />
         </div>
+        <div className="parallax-effect absolute top-1/3 right-1/2 w-10 h-10" data-speed="18">
+            <div className="w-full h-full rounded-full animate-float opacity-20" 
+                 style={{ background: 'var(--color-primary)', animationDelay: '1s' }} />
+        </div>
+        <div className="parallax-effect absolute bottom-1/3 left-3/4 w-8 h-8" data-speed="-15">
+            <div className="w-full h-full rotate-45 animate-rotate-3d opacity-25" 
+                 style={{ background: 'var(--color-accent)', animationDuration: '30s' }} />
+        </div>
       </div>
       
       <div className="relative z-10 parallax-effect hero-content-tilt transition-transform duration-100 ease-out" data-speed="5" style={{ transformStyle: 'preserve-3d' }}>
