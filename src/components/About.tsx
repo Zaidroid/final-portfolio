@@ -1,6 +1,9 @@
+
 import { Card, CardContent } from '@/components/ui/card';
 import CountUp from './CountUp';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Code, Smartphone, Globe, Database, Cloud, Zap } from 'lucide-react';
 
 const About = () => {
   const skills = [
@@ -34,6 +37,45 @@ const About = () => {
       company: 'Tech Startup',
       description: 'Built MVP products and implemented CI/CD pipelines.'
     },
+  ];
+
+  const services = [
+    {
+      icon: <Code className="w-8 h-8" />,
+      title: 'Full-Stack Development',
+      description: 'End-to-end web application development using modern frameworks like React, Next.js, and Node.js.',
+      features: ['Custom Web Applications', 'API Development', 'Database Design', 'Performance Optimization']
+    },
+    {
+      icon: <Smartphone className="w-8 h-8" />,
+      title: 'Mobile Development',
+      description: 'Cross-platform mobile applications that deliver native performance and user experience.',
+      features: ['React Native Apps', 'iOS & Android', 'Cross-Platform Solutions', 'App Store Deployment']
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: 'Web Design & UX',
+      description: 'Beautiful, responsive designs that convert visitors into customers with exceptional user experience.',
+      features: ['Responsive Design', 'UI/UX Design', 'Wireframing', 'User Research']
+    },
+    {
+      icon: <Database className="w-8 h-8" />,
+      title: 'Database Solutions',
+      description: 'Scalable database architecture and optimization for high-performance applications.',
+      features: ['Database Design', 'Query Optimization', 'Data Migration', 'Performance Tuning']
+    },
+    {
+      icon: <Cloud className="w-8 h-8" />,
+      title: 'Cloud & DevOps',
+      description: 'Modern cloud infrastructure and deployment solutions for scalable applications.',
+      features: ['AWS/Azure Deployment', 'CI/CD Pipelines', 'Docker Containers', 'Monitoring & Analytics']
+    },
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: 'Technical Consulting',
+      description: 'Strategic technology guidance to help your business make informed technical decisions.',
+      features: ['Technology Strategy', 'Code Reviews', 'Architecture Planning', 'Team Training']
+    }
   ];
 
   return (
@@ -70,9 +112,10 @@ const About = () => {
 
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Tabs defaultValue="journey" className="max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-2 mb-8 glass">
+              <TabsList className="grid w-full grid-cols-3 mb-8 glass">
                 <TabsTrigger value="journey">My Journey</TabsTrigger>
                 <TabsTrigger value="skills">Technical Skills</TabsTrigger>
+                <TabsTrigger value="services">Our Services</TabsTrigger>
               </TabsList>
               <TabsContent value="journey" className="animate-scale-in">
                 <div className="relative max-w-2xl mx-auto">
@@ -115,6 +158,41 @@ const About = () => {
                       </div>
                     </CardContent>
                   </Card>
+              </TabsContent>
+              <TabsContent value="services" className="animate-scale-in">
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                  {services.map((service, index) => (
+                    <AccordionItem value={`item-${index}`} key={service.title} className="glass rounded-lg hover-glow border-none">
+                      <AccordionTrigger className="p-6 text-left hover:no-underline">
+                        <div className="flex items-center gap-4">
+                          <div
+                            className="p-3 rounded-full w-fit group-hover:scale-110 transition-transform duration-300"
+                            style={{
+                              background: `linear-gradient(to right, var(--color-primary), var(--color-accent))`,
+                              color: `var(--color-surface)`
+                            }}
+                          >
+                            {service.icon}
+                          </div>
+                          <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="p-6 pt-0">
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {service.description}
+                        </p>
+                        <ul className="space-y-3 pl-4 border-l-2 border-primary/30">
+                          {service.features.map((feature) => (
+                            <li key={feature} className="text-sm text-muted-foreground/80 flex items-center gap-3">
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </TabsContent>
             </Tabs>
         </div>
