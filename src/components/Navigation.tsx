@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from '@/components/ThemeToggle';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 type NavLink = {
