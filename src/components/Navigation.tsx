@@ -54,8 +54,7 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
-    const targetId = sectionId === 'services' ? 'about' : sectionId;
-    const element = document.getElementById(targetId);
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

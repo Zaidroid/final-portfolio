@@ -109,7 +109,7 @@ const About = () => {
           </Card>
         </div>
 
-        <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <div id="services" className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Tabs defaultValue="services" className="max-w-4xl mx-auto">
               <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="services">Services</TabsTrigger>
@@ -159,11 +159,11 @@ const About = () => {
                   </Card>
               </TabsContent>
               <TabsContent value="services" className="animate-scale-in">
-                <Accordion type="single" collapsible className="w-full grid md:grid-cols-2 gap-4">
-                  {services.map((service, index) => (
-                    <AccordionItem value={`item-${index}`} key={service.title} className="glass rounded-lg hover-glow border-none">
-                      <AccordionTrigger className="p-6 text-left hover:no-underline">
-                        <div className="flex items-center gap-4">
+                <div className="w-full grid md:grid-cols-2 gap-4">
+                  {services.map((service) => (
+                    <Card key={service.title} className="glass rounded-lg hover-glow border-none flex flex-col">
+                      <CardContent className="p-6 flex flex-col flex-grow">
+                        <div className="flex items-center gap-4 mb-4">
                           <div
                             className="p-3 rounded-full w-fit group-hover:scale-110 transition-transform duration-300"
                             style={{
@@ -175,9 +175,7 @@ const About = () => {
                           </div>
                           <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
                         </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="p-6 pt-0">
-                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                        <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                           {service.description}
                         </p>
                         <ul className="space-y-3 pl-4 border-l-2 border-primary/30">
@@ -188,10 +186,10 @@ const About = () => {
                             </li>
                           ))}
                         </ul>
-                      </AccordionContent>
-                    </AccordionItem>
+                      </CardContent>
+                    </Card>
                   ))}
-                </Accordion>
+                </div>
               </TabsContent>
             </Tabs>
         </div>
