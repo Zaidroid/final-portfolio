@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,7 +47,11 @@
   body {
     min-height: 100vh;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 60%, color-mix(in srgb, var(--color-primary) 10%, var(--color-background) 90%) 100%);
+    background: linear-gradient(135deg, 
+      var(--color-background) 0%, 
+      color-mix(in srgb, var(--color-surface) 90%, var(--color-primary) 10%) 40%, 
+      color-mix(in srgb, var(--color-background) 70%, var(--color-accent) 30%) 100%
+    );
     color: var(--color-text);
   }
 
