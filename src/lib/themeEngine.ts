@@ -97,6 +97,10 @@ export function applyTheme(config: ThemeConfig) {
   // Update Tailwind CSS variables for compatibility
   root.style.setProperty('--background', palette.background);
   root.style.setProperty('--foreground', palette.text);
+  root.style.setProperty('--card', palette.surface);
+  root.style.setProperty('--card-foreground', palette.text);
+  root.style.setProperty('--popover', palette.surface);
+  root.style.setProperty('--popover-foreground', palette.text);
   root.style.setProperty('--primary', palette.primary);
   root.style.setProperty('--primary-foreground', palette.surface);
   root.style.setProperty('--secondary', palette.secondary);
