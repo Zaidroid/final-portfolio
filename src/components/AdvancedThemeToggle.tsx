@@ -2,8 +2,8 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { Palette } from 'lucide-react';
+import { ThemeControlPanel } from './ThemeControlPanel';
 import { useAdvancedTheme } from '@/hooks/useAdvancedTheme';
-import { ModernThemeCustomizer } from './ModernThemeCustomizer';
 
 export function AdvancedThemeToggle() {
   const { config, updateTheme, resetTheme, saveConfigAsDefault, customAccentColors, addCustomAccentColor, removeCustomAccentColor } = useAdvancedTheme();
@@ -24,8 +24,8 @@ export function AdvancedThemeToggle() {
           <span className="sr-only">Customize theme</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-96 p-0 border bg-transparent text-foreground" align="end">
-        <ModernThemeCustomizer
+      <PopoverContent className="w-96 p-0 border-border" align="end">
+        <ThemeControlPanel
           config={config}
           onChange={updateTheme}
           onReset={resetTheme}
