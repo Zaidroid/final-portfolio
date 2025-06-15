@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import { Palette, Settings, Moon, Sun, Download, Upload } from 'lucide-react';
+import { Palette, Settings, Moon, Sun, Download, Upload, X } from 'lucide-react';
 import { ThemeConfig, accentColorPresets, defaultThemeConfig } from '@/lib/themeEngine';
 
 interface ThemeControlPanelProps {
@@ -54,78 +54,101 @@ export function ThemeControlPanel({ config, onChange, onClose }: ThemeControlPan
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <Settings className="w-6 h-6" />
-            Theme Customization
+      <div 
+        className="rounded-xl shadow-2xl w-full max-w-xl max-h-[85vh] overflow-hidden glass border"
+        style={{ 
+          background: 'var(--color-surface)',
+          color: 'var(--color-text)',
+          borderColor: 'var(--color-border)'
+        }}
+      >
+        <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
+          <h2 className="text-lg font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
+            <Settings className="w-5 h-5" />
+            Theme Settings
           </h2>
           <Button variant="ghost" size="sm" onClick={onClose}>
-            ✕
+            <X className="w-4 h-4" />
           </Button>
         </div>
 
         <div className="flex">
-          {/* Sidebar */}
-          <div className="w-48 border-r p-4 space-y-2">
+          {/* Compact Sidebar */}
+          <div className="w-32 border-r p-2 space-y-1" style={{ borderColor: 'var(--color-border)' }}>
             <button
               onClick={() => setActiveTab('colors')}
-              className={`w-full text-left p-3 rounded-lg transition-colors ${
-                activeTab === 'colors' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
+              className={`w-full text-xs p-2 rounded transition-colors ${
+                activeTab === 'colors' ? 'text-white' : 'hover:bg-opacity-10'
               }`}
+              style={{ 
+                backgroundColor: activeTab === 'colors' ? 'var(--color-primary)' : 'transparent',
+                color: activeTab === 'colors' ? 'white' : 'var(--color-text)'
+              }}
             >
-              <Palette className="w-4 h-4 inline mr-2" />
+              <Palette className="w-3 h-3 mx-auto mb-1" />
               Colors
             </button>
             <button
               onClick={() => setActiveTab('buttons')}
-              className={`w-full text-left p-3 rounded-lg transition-colors ${
-                activeTab === 'buttons' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
+              className={`w-full text-xs p-2 rounded transition-colors ${
+                activeTab === 'buttons' ? 'text-white' : 'hover:bg-opacity-10'
               }`}
+              style={{ 
+                backgroundColor: activeTab === 'buttons' ? 'var(--color-primary)' : 'transparent',
+                color: activeTab === 'buttons' ? 'white' : 'var(--color-text)'
+              }}
             >
-              Button Styles
+              Buttons
             </button>
             <button
               onClick={() => setActiveTab('layout')}
-              className={`w-full text-left p-3 rounded-lg transition-colors ${
-                activeTab === 'layout' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
+              className={`w-full text-xs p-2 rounded transition-colors ${
+                activeTab === 'layout' ? 'text-white' : 'hover:bg-opacity-10'
               }`}
+              style={{ 
+                backgroundColor: activeTab === 'layout' ? 'var(--color-primary)' : 'transparent',
+                color: activeTab === 'layout' ? 'white' : 'var(--color-text)'
+              }}
             >
               Layout
             </button>
           </div>
 
-          {/* Content */}
-          <div className="flex-1 p-6 overflow-y-auto max-h-[70vh]">
+          {/* Compact Content */}
+          <div className="flex-1 p-4 overflow-y-auto max-h-[60vh]">
             {activeTab === 'colors' && (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <Label className="text-lg font-semibold">Theme Mode</Label>
+                  <div className="flex items-center justify-between mb-3">
+                    <Label className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Mode</Label>
                     <div className="flex items-center gap-2">
-                      <Sun className="w-4 h-4" />
+                      <Sun className="w-3 h-3" style={{ color: 'var(--color-text-muted)' }} />
                       <Switch
                         checked={config.mode === 'dark'}
                         onCheckedChange={(checked) => updateConfig({ mode: checked ? 'dark' : 'light' })}
                       />
-                      <Moon className="w-4 h-4" />
+                      <Moon className="w-3 h-3" style={{ color: 'var(--color-text-muted)' }} />
                     </div>
                   </div>
                 </div>
 
-                <Separator />
+                <Separator style={{ backgroundColor: 'var(--color-border)' }} />
 
                 <div>
-                  <Label className="text-lg font-semibold mb-4 block">Accent Color</Label>
-                  <div className="grid grid-cols-4 gap-3 mb-4">
+                  <Label className="text-sm font-medium mb-3 block" style={{ color: 'var(--color-text)' }}>Accent Color</Label>
+                  <div className="grid grid-cols-6 gap-2 mb-3">
                     {accentColorPresets.map((preset) => (
                       <button
                         key={preset.value}
                         onClick={() => handleColorChange(preset.value)}
-                        className={`w-12 h-12 rounded-lg border-2 transition-transform hover:scale-110 ${
-                          config.accentColor === preset.value ? 'border-gray-800 scale-110' : 'border-gray-300'
+                        className={`w-6 h-6 rounded border transition-transform hover:scale-110 ${
+                          config.accentColor === preset.value ? 'scale-110 ring-2' : ''
                         }`}
-                        style={{ backgroundColor: preset.value }}
+                        style={{ 
+                          backgroundColor: preset.value,
+                          borderColor: 'var(--color-border)',
+                          ringColor: 'var(--color-primary)'
+                        }}
                         title={preset.name}
                       />
                     ))}
@@ -134,33 +157,39 @@ export function ThemeControlPanel({ config, onChange, onClose }: ThemeControlPan
                     type="color"
                     value={config.accentColor}
                     onChange={(e) => handleColorChange(e.target.value)}
-                    className="w-full h-12 rounded-lg border cursor-pointer"
+                    className="w-full h-8 rounded border cursor-pointer"
+                    style={{ borderColor: 'var(--color-border)' }}
                   />
                 </div>
               </div>
             )}
 
             {activeTab === 'buttons' && (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <Label className="text-lg font-semibold mb-4 block">Button Style</Label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <Label className="text-sm font-medium mb-3 block" style={{ color: 'var(--color-text)' }}>Button Style</Label>
+                  <div className="grid grid-cols-2 gap-2">
                     {(['rounded', 'sharp', 'minimal', 'pill'] as const).map((style) => (
                       <button
                         key={style}
                         onClick={() => updateConfig({ buttonStyle: style })}
-                        className={`p-4 border-2 rounded-lg transition-colors ${
-                          config.buttonStyle === style ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                        className={`p-2 border rounded transition-colors ${
+                          config.buttonStyle === style ? 'border-2' : ''
                         }`}
+                        style={{
+                          borderColor: config.buttonStyle === style ? 'var(--color-primary)' : 'var(--color-border)',
+                          backgroundColor: config.buttonStyle === style ? 'color-mix(in srgb, var(--color-primary) 10%, transparent)' : 'transparent'
+                        }}
                       >
-                        <div className="text-sm font-medium mb-2 capitalize">{style}</div>
+                        <div className="text-xs font-medium mb-1 capitalize" style={{ color: 'var(--color-text)' }}>{style}</div>
                         <div
-                          className={`w-full h-8 bg-blue-500 text-white text-xs flex items-center justify-center ${
-                            style === 'rounded' ? 'rounded-lg' :
+                          className={`w-full h-4 text-white text-xs flex items-center justify-center ${
+                            style === 'rounded' ? 'rounded' :
                             style === 'sharp' ? 'rounded-none' :
-                            style === 'minimal' ? 'rounded' :
+                            style === 'minimal' ? 'rounded-sm' :
                             'rounded-full'
                           }`}
+                          style={{ backgroundColor: 'var(--color-primary)' }}
                         >
                           Button
                         </div>
@@ -172,67 +201,69 @@ export function ThemeControlPanel({ config, onChange, onClose }: ThemeControlPan
             )}
 
             {activeTab === 'layout' && (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <Label className="text-lg font-semibold mb-4 block">Border Radius</Label>
+                  <Label className="text-sm font-medium mb-2 block" style={{ color: 'var(--color-text)' }}>Border Radius</Label>
                   <Slider
                     value={[config.borderRadius]}
                     onValueChange={([value]) => updateConfig({ borderRadius: value })}
                     max={20}
                     min={0}
                     step={1}
-                    className="mb-2"
+                    className="mb-1"
                   />
-                  <div className="text-sm text-gray-600">{config.borderRadius}px</div>
+                  <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{config.borderRadius}px</div>
                 </div>
 
                 <div>
-                  <Label className="text-lg font-semibold mb-4 block">Spacing Scale</Label>
+                  <Label className="text-sm font-medium mb-2 block" style={{ color: 'var(--color-text)' }}>Spacing</Label>
                   <Slider
                     value={[config.spacing]}
                     onValueChange={([value]) => updateConfig({ spacing: value })}
                     max={24}
                     min={8}
                     step={2}
-                    className="mb-2"
+                    className="mb-1"
                   />
-                  <div className="text-sm text-gray-600">{config.spacing}px</div>
+                  <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{config.spacing}px</div>
                 </div>
 
                 <div>
-                  <Label className="text-lg font-semibold mb-4 block">Shadow Intensity</Label>
+                  <Label className="text-sm font-medium mb-2 block" style={{ color: 'var(--color-text)' }}>Shadow Intensity</Label>
                   <Slider
                     value={[config.shadowIntensity * 100]}
                     onValueChange={([value]) => updateConfig({ shadowIntensity: value / 100 })}
                     max={50}
                     min={0}
                     step={5}
-                    className="mb-2"
+                    className="mb-1"
                   />
-                  <div className="text-sm text-gray-600">{Math.round(config.shadowIntensity * 100)}%</div>
+                  <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{Math.round(config.shadowIntensity * 100)}%</div>
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        <div className="p-6 border-t bg-gray-50 dark:bg-gray-800 flex gap-3">
+        <div className="p-3 border-t flex gap-2 text-xs" style={{ borderColor: 'var(--color-border)', backgroundColor: 'color-mix(in srgb, var(--color-surface) 50%, var(--color-background) 50%)' }}>
           <Button
             variant="outline"
+            size="sm"
             onClick={handleExport}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 text-xs h-7"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3 h-3" />
             Export
           </Button>
           <label className="cursor-pointer">
             <Button
               variant="outline"
-              className="flex items-center gap-2"
+              size="sm"
+              className="flex items-center gap-1 text-xs h-7"
               asChild
             >
               <span>
-                <Upload className="w-4 h-4" />
+                <Upload className="w-3 h-3" />
                 Import
               </span>
             </Button>
@@ -245,11 +276,13 @@ export function ThemeControlPanel({ config, onChange, onClose }: ThemeControlPan
           </label>
           <Button
             variant="outline"
+            size="sm"
             onClick={() => onChange(defaultThemeConfig)}
+            className="text-xs h-7"
           >
             Reset
           </Button>
-          <Button onClick={onClose} className="ml-auto">
+          <Button onClick={onClose} size="sm" className="ml-auto text-xs h-7">
             Done
           </Button>
         </div>

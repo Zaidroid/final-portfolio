@@ -66,6 +66,42 @@
 }
 
 @layer components {
+  /* Universal button styling that affects ALL buttons and button-like elements */
+  button, 
+  .btn, 
+  [role="button"],
+  .theme-button,
+  input[type="submit"],
+  input[type="button"] {
+    border-radius: var(--button-radius) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  /* Specific button style classes */
+  .btn-rounded button,
+  .btn-rounded .btn,
+  .btn-rounded [role="button"] {
+    border-radius: 8px !important;
+  }
+
+  .btn-sharp button,
+  .btn-sharp .btn,
+  .btn-sharp [role="button"] {
+    border-radius: 0px !important;
+  }
+
+  .btn-minimal button,
+  .btn-minimal .btn,
+  .btn-minimal [role="button"] {
+    border-radius: 4px !important;
+  }
+
+  .btn-pill button,
+  .btn-pill .btn,
+  .btn-pill [role="button"] {
+    border-radius: 50px !important;
+  }
+
   /* Dynamic glass effect */
   .glass {
     background: color-mix(in srgb, var(--color-surface) 80%, transparent 20%);
@@ -115,18 +151,18 @@
 
   /* Theme-aware buttons */
   .theme-button {
-    background: var(--color-primary);
-    color: var(--color-surface);
-    border-radius: var(--button-radius);
-    padding: var(--button-padding);
-    transition: all 0.3s ease;
-    border: none;
+    background: var(--color-primary) !important;
+    color: var(--color-surface) !important;
+    border-radius: var(--button-radius) !important;
+    padding: var(--button-padding) !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
   }
 
   .theme-button:hover {
-    background: var(--color-primary-hover);
-    box-shadow: 0 8px 25px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 100%), transparent);
-    transform: translateY(-2px);
+    background: var(--color-primary-hover) !important;
+    box-shadow: 0 8px 25px color-mix(in srgb, var(--color-primary) calc(var(--shadow-intensity) * 100%), transparent) !important;
+    transform: translateY(-2px) !important;
   }
 
   /* Navigation active state with dynamic colors */
@@ -148,36 +184,90 @@
 
   /* Brand title with dynamic gradient */
   .brand-title {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent)) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    font-weight: 800 !important;
   }
 
   /* Enhanced input styles */
   .theme-input {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    border-radius: var(--border-radius);
-    transition: all 0.3s ease;
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+    border-radius: var(--border-radius) !important;
+    transition: all 0.3s ease !important;
   }
 
   .theme-input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
+  }
+
+  /* Universal icon theming */
+  .theme-icon {
+    color: var(--color-primary) !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .theme-icon:hover {
+    color: var(--color-primary-hover) !important;
+  }
+
+  /* Subtitle theming */
+  .theme-subtitle {
+    color: var(--color-text-muted) !important;
+  }
+
+  /* Tab theming */
+  .theme-tab {
+    color: var(--color-text-muted) !important;
+    border-bottom: 2px solid transparent !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .theme-tab.active,
+  .theme-tab:hover {
+    color: var(--color-primary) !important;
+    border-bottom-color: var(--color-primary) !important;
   }
 
   /* Dynamic borders and dividers */
   .theme-border {
-    border-color: var(--color-border);
+    border-color: var(--color-border) !important;
   }
 
   .theme-divider {
-    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
-    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent) !important;
+    height: 1px !important;
+  }
+
+  /* Global text color enforcement */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text) !important;
+  }
+
+  p {
+    color: var(--color-text-muted) !important;
+  }
+
+  /* Universal SVG icon theming */
+  svg {
+    transition: color 0.3s ease;
+  }
+
+  .services-icon svg,
+  .social-icon svg,
+  .contact-icon svg {
+    color: var(--color-primary) !important;
+  }
+
+  .services-icon:hover svg,
+  .social-icon:hover svg,
+  .contact-icon:hover svg {
+    color: var(--color-primary-hover) !important;
   }
 }
 
@@ -207,7 +297,41 @@
 
 /* Focus indicators */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: var(--border-radius);
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 2px !important;
+  border-radius: var(--border-radius) !important;
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate-3d {
+  0% { transform: rotateY(0deg) rotateX(0deg); }
+  50% { transform: rotateY(180deg) rotateX(90deg); }
+  100% { transform: rotateY(360deg) rotateX(0deg); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-rotate-3d {
+  animation: rotate-3d 20s linear infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 1s ease-out;
 }

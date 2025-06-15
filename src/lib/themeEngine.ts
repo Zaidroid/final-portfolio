@@ -78,9 +78,9 @@ export function applyTheme(config: ThemeConfig) {
   root.style.setProperty('--spacing', `${config.spacing}px`);
   root.style.setProperty('--shadow-intensity', config.shadowIntensity.toString());
 
-  // Apply button style variables
+  // Apply button style variables with proper mapping
   const buttonStyles = {
-    rounded: { radius: '8px', padding: '12px 24px' },
+    rounded: { radius: `${config.borderRadius}px`, padding: '12px 24px' },
     sharp: { radius: '0px', padding: '12px 24px' },
     minimal: { radius: '4px', padding: '8px 16px' },
     pill: { radius: '50px', padding: '12px 24px' },
@@ -106,4 +106,9 @@ export function applyTheme(config: ThemeConfig) {
   root.style.setProperty('--border', palette.border);
   root.style.setProperty('--input', palette.border);
   root.style.setProperty('--ring', palette.primary);
+  root.style.setProperty('--radius', `${config.borderRadius}px`);
+
+  // Apply global button style class
+  root.classList.remove('btn-rounded', 'btn-sharp', 'btn-minimal', 'btn-pill');
+  root.classList.add(`btn-${config.buttonStyle}`);
 }
