@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
@@ -74,7 +73,7 @@ const Navigation = () => {
       <div className={`flex justify-center transition-all duration-500 ease-in-out ${isScrolled && !isMenuOpen ? 'pt-4' : 'pt-0'}`}>
         <div className={`transition-all duration-500 ease-in-out ${isScrolled && !isMenuOpen ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
           <div className={`container mx-auto flex items-center justify-between ${isScrolled && !isMenuOpen ? 'px-4 py-2 gap-x-6' : 'px-6 py-4'}`}>
-            <div className="text-2xl font-bold gradient-text">
+            <div className="text-2xl font-bold brand-title">
               ZaidLab
             </div>
             
@@ -83,14 +82,11 @@ const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative text-sm font-medium transition-colors duration-300 hover:text-purple-400 ${
-                    activeSection === item.id ? 'text-purple-400' : 'text-foreground/80'
+                  className={`relative text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === item.id ? 'nav-active' : 'text-foreground/80 hover:text-foreground'
                   }`}
                 >
                   {item.label}
-                  {activeSection === item.id && (
-                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" />
-                  )}
                 </button>
               ))}
             </div>
@@ -99,7 +95,7 @@ const Navigation = () => {
               <ThemeToggle />
               <Button 
                 onClick={() => scrollToSection('contact')}
-                className="hidden sm:inline-flex bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
+                className="hidden sm:inline-flex theme-button hover-glow"
               >
                 Get In Touch
               </Button>
@@ -124,8 +120,8 @@ const Navigation = () => {
                     scrollToSection(item.id);
                     setIsMenuOpen(false);
                 }}
-                className={`relative text-2xl font-medium transition-colors duration-300 hover:text-purple-400 ${
-                    activeSection === item.id ? 'text-purple-400' : 'text-foreground/80'
+                className={`relative text-2xl font-medium transition-all duration-300 hover:scale-110 ${
+                    activeSection === item.id ? 'nav-active' : 'text-foreground/80 hover:text-foreground'
                 }`}
                 >
                 {item.label}
@@ -137,7 +133,7 @@ const Navigation = () => {
                     setIsMenuOpen(false);
                 }}
                 size="lg"
-                className="sm:hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover-glow"
+                className="sm:hidden theme-button hover-glow"
             >
                 Get In Touch
             </Button>

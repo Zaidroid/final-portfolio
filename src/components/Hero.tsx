@@ -57,29 +57,29 @@ const Hero = () => {
       {/* Parallax Wrappers for Animated background elements */}
       <div className="absolute inset-0">
         <div className="parallax-effect absolute top-20 left-20 w-72 h-72" data-speed="20">
-            <div className="w-full h-full bg-purple-500/10 rounded-full blur-3xl floating-element" />
+            <div className="w-full h-full rounded-full blur-3xl floating-element" style={{ background: 'var(--color-primary)', opacity: 0.1 }} />
         </div>
         <div className="parallax-effect absolute top-40 right-20 w-96 h-96" data-speed="-30">
-            <div className="w-full h-full bg-pink-500/10 rounded-full blur-3xl floating-element" style={{ animationDelay: '2s' }} />
+            <div className="w-full h-full rounded-full blur-3xl floating-element" style={{ background: 'var(--color-accent)', opacity: 0.1, animationDelay: '2s' }} />
         </div>
         <div className="parallax-effect absolute bottom-20 left-1/2 -translate-x-1/2 w-80 h-80" data-speed="15">
-            <div className="w-full h-full bg-blue-500/10 rounded-full blur-3xl floating-element" style={{ animationDelay: '4s' }} />
+            <div className="w-full h-full rounded-full blur-3xl floating-element" style={{ background: 'var(--color-secondary)', opacity: 0.1, animationDelay: '4s' }} />
         </div>
       </div>
 
       {/* Parallax Wrappers for 3D floating geometric shapes */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="parallax-effect absolute top-1/4 left-1/4 w-20 h-20" data-speed="-10">
-          <div className="w-full h-full border border-purple-500/30 rotate-45 animate-rotate-3d" style={{ animationDuration: '20s' }} />
+          <div className="w-full h-full rotate-45 animate-rotate-3d" style={{ border: `1px solid var(--color-primary)`, opacity: 0.3, animationDuration: '20s' }} />
         </div>
         <div className="parallax-effect absolute top-3/4 right-1/4 w-16 h-16" data-speed="25">
-          <div className="w-full h-full border border-pink-500/30 rounded-full animate-float" style={{ animationDelay: '3s' }} />
+          <div className="w-full h-full rounded-full animate-float" style={{ border: `1px solid var(--color-accent)`, opacity: 0.3, animationDelay: '3s' }} />
         </div>
         <div className="parallax-effect absolute top-1/2 right-1/3 w-12 h-12" data-speed="-5">
-          <div className="w-full h-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 rotate-12 animate-glow" />
+          <div className="w-full h-full rotate-12 animate-glow" style={{ background: `linear-gradient(135deg, var(--color-primary), var(--color-accent))`, opacity: 0.2 }} />
         </div>
         <div className="parallax-effect absolute bottom-1/4 left-1/3 w-14 h-14" data-speed="12">
-          <div className="w-full h-full border-2 border-blue-500/20 animate-rotate-3d" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
+          <div className="w-full h-full animate-rotate-3d" style={{ border: `2px solid var(--color-secondary)`, opacity: 0.2, animationDuration: '25s', animationDirection: 'reverse' }} />
         </div>
       </div>
       
@@ -107,7 +107,7 @@ const Hero = () => {
               <Button 
                 onClick={() => scrollToSection('projects')}
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg transition-all duration-300 hover-glow"
+                className="theme-button px-8 py-4 text-lg hover-glow"
               >
                 View My Work
               </Button>
@@ -115,7 +115,11 @@ const Hero = () => {
                 onClick={() => scrollToSection('contact')}
                 variant="outline"
                 size="lg"
-                className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 text-lg transition-all duration-300 hover-glow"
+                className="px-8 py-4 text-lg transition-all duration-300 hover-glow"
+                style={{ 
+                  borderColor: 'var(--color-primary)', 
+                  color: 'var(--color-primary)',
+                }}
               >
                 Let's Connect
               </Button>
@@ -124,11 +128,10 @@ const Hero = () => {
         </div>
       </div>
 
-
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-purple-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-purple-400 rounded-full mt-2 animate-pulse" />
+        <div className="w-6 h-10 rounded-full flex justify-center" style={{ border: `2px solid var(--color-primary)` }}>
+          <div className="w-1 h-3 rounded-full mt-2 animate-pulse" style={{ background: 'var(--color-primary)' }} />
         </div>
       </div>
     </section>
