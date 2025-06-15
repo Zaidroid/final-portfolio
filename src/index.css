@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,6 +86,11 @@
 
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* Add padding to body to account for fixed header */
+  body {
+    padding-top: 80px;
   }
 }
 
