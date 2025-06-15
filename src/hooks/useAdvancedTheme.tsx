@@ -18,21 +18,43 @@ export function AdvancedThemeProvider({ children }: { children: ReactNode }) {
   const [config, setConfig] = useState<ThemeConfig>(defaultThemeConfig);
   const [userDefaultConfig, setUserDefaultConfig] = useState<ThemeConfig | null>(null);
   const [customAccentColors, setCustomAccentColors] = useState<string[]>([]);
+  const [siteDefaultConfig, setSiteDefaultConfig] = useState<ThemeConfig>(defaultThemeConfig);
 
   useEffect(() => {
     // Load all theme-related data from localStorage
     const savedConfig = localStorage.getItem('advanced-theme-config');
     const savedUserDefault = localStorage.getItem('user-default-theme-config');
     const savedCustomColors = localStorage.getItem('custom-accent-colors');
+    const savedSiteDefault = localStorage.getItem('site-default-theme-config');
+
+    // Load site default first
+    if (savedSiteDefault) {
+      try {
+        const parsedSiteDefault = JSON.parse(savedSiteDefault);
+        setSiteDefaultConfig({ ...defaultThemeConfig, ...parsedSiteDefault });
+      } catch (error) {
+        console.error('Failed to parse site default theme config');
+      }
+    }
+
+    // Use site default as fallback instead of hardcoded default
+    const fallbackConfig = savedSiteDefault ? 
+      { ...defaultThemeConfig, ...JSON.parse(savedSiteDefault) } : 
+      defaultThemeConfig;
 
     if (savedConfig) {
       try {
         const parsedConfig = JSON.parse(savedConfig);
-        setConfig({ ...defaultThemeConfig, ...parsedConfig });
+        setConfig({ ...fallbackConfig, ...parsedConfig });
       } catch (error) {
         console.error('Failed to parse saved theme config');
+        setConfig(fallbackConfig);
       }
+    } else {
+      // New user - use site default
+      setConfig(fallbackConfig);
     }
+
     if (savedUserDefault) {
       try {
         setUserDefaultConfig(JSON.parse(savedUserDefault));
@@ -53,6 +75,10 @@ export function AdvancedThemeProvider({ children }: { children: ReactNode }) {
     // Apply theme to document and save to localStorage
     applyTheme(config);
     localStorage.setItem('advanced-theme-config', JSON.stringify(config));
+    
+    // Also save as site default for new users
+    localStorage.setItem('site-default-theme-config', JSON.stringify(config));
+    setSiteDefaultConfig(config);
   }, [config]);
 
   const updateTheme = (newConfig: ThemeConfig) => {
@@ -65,7 +91,7 @@ export function AdvancedThemeProvider({ children }: { children: ReactNode }) {
   };
 
   const resetTheme = () => {
-    setConfig(userDefaultConfig || defaultThemeConfig);
+    setConfig(userDefaultConfig || siteDefaultConfig);
   };
 
   const addCustomAccentColor = (color: string) => {
