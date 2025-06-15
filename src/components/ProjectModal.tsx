@@ -1,3 +1,4 @@
+
 import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +10,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project }: ProjectModalProps) => (
-  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row">
+  <DialogContent className="sm:max-w-4xl w-[95vw] h-auto max-h-[90vh] p-0 border rounded-2xl overflow-hidden flex flex-col md:flex-row">
     <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group/dialog">
       <img
         src={project.image}
@@ -19,7 +20,7 @@ export const ProjectModal = ({ project }: ProjectModalProps) => (
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
     </div>
 
-    <div className="w-full md:w-1/2 p-8 sm:p-10 flex flex-col space-y-5 overflow-y-auto">
+    <div className="w-full md:w-1/2 p-8 sm:p-10 flex flex-col space-y-5 overflow-y-auto bg-card">
       <header className="animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
         <Badge variant="secondary" className="mb-3 capitalize text-sm font-medium">{project.category} App</Badge>
         <DialogTitle asChild>
