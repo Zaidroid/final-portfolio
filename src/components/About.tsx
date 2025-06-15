@@ -102,8 +102,8 @@ const About = () => {
                 <p className="text-muted-foreground">Years Experience</p>
               </div>
               <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={15} suffix="+" /></h4>
-                <p className="text-muted-foreground">Technologies Mastered</p>
+                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={30} suffix="+" /></h4>
+                <p className="text-muted-foreground">Happy Clients</p>
               </div>
             </div>
           </Card>

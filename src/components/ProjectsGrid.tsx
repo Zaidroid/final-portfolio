@@ -10,7 +10,7 @@ interface ProjectsGridProps {
 
 export const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-2 gap-8">
       {projects.map((project, index) => (
         <Dialog key={project.id}>
           <DialogTrigger asChild>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -36,12 +35,12 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Email',
-      value: 'hello@zaidlab.xyz',
+      value: 'zaidsalem@live.com',
       icon: '📧'
     },
     {
       title: 'Location',
-      value: 'Available Worldwide',
+      value: 'Ramallah, Palestine',
       icon: '🌍'
     },
     {
@@ -144,7 +143,7 @@ const Contact = () => {
                   or just want to say hello, I'd love to hear from you.
                 </p>
                 
-                <div className="flex flex-wrap justify-center gap-x-8 gap-y-6 mb-12">
+                <div className="flex flex-wrap justify-center gap-x-8 gap-y-6">
                   {contactInfo.map((info) => (
                     <div key={info.title} className="flex items-center gap-4">
                       <span className="text-2xl">{info.icon}</span>
@@ -154,14 +153,6 @@ const Contact = () => {
                       </div>
                     </div>
                   ))}
-                </div>
-
-                <h3 className="text-xl font-bold text-foreground mb-6 text-center">Follow Me</h3>
-                <div className="flex gap-4 justify-center">
-                  <Button asChild size="icon" variant="outline"><a href="#" target="_blank" rel="noopener noreferrer"><Linkedin className="w-5 h-5" /></a></Button>
-                  <Button asChild size="icon" variant="outline"><a href="#" target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5" /></a></Button>
-                  <Button asChild size="icon" variant="outline"><a href="#" target="_blank" rel="noopener noreferrer"><Twitter className="w-5 h-5" /></a></Button>
-                  <Button asChild size="icon" variant="outline"><a href="#" target="_blank" rel="noopener noreferrer"><Instagram className="w-5 h-5" /></a></Button>
                 </div>
               </div>
             </CardContent>
