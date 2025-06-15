@@ -24,7 +24,7 @@ export function AdvancedThemeToggle() {
           <span className="sr-only">Customize theme</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 p-0 border-border bg-background" align="end">
+      <PopoverContent className="w-96 p-0 border-border" align="end">
         <ThemeControlPanel
           config={config}
           onChange={updateTheme}
