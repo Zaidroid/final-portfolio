@@ -1,8 +1,10 @@
 
+import { useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Project } from '@/types/project';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface ProjectCardProps {
   project: Project;
@@ -10,13 +12,18 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isVisible = useIntersectionObserver(cardRef, { triggerOnce: true, threshold: 0.2 });
+
   return (
     <Card 
+      ref={cardRef}
       className={cn(
         "group overflow-hidden relative rounded-lg border-border/50 hover:border-primary/80 transition-all duration-300 ease-in-out transform hover:-translate-y-2 h-full flex flex-col",
-        "animate-scale-in"
+        "opacity-0",
+        isVisible && "animate-reveal-up"
       )}
-      style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'backwards' }}
+      style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="relative overflow-hidden h-48">
         <img 

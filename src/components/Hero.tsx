@@ -101,25 +101,25 @@ const Hero = () => {
       
       <div className="relative z-10 parallax-effect hero-content-tilt transition-transform duration-100 ease-out" data-speed="5" style={{ transformStyle: 'preserve-3d' }}>
         <div className="container mx-auto px-6 text-center">
-          <div className="animate-slide-up">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6">
+          <div>
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
               <span className="block gradient-text">Zaid</span>
               <span className="block" style={{ color: 'var(--color-text)' }}>Salem</span>
             </h1>
             
-            <div className="h-16 mb-8">
+            <div className="h-16 mb-8 animate-slide-up" style={{ animationDelay: '200ms' }}>
               <p className="text-xl md:text-2xl font-light" style={{ color: 'var(--color-text-muted)' }}>
                 {text}
                 <span className="animate-pulse">|</span>
               </p>
             </div>
             
-            <p className="text-lg max-w-2xl mx-auto mb-12 leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-slide-up" style={{ animationDelay: '300ms', color: 'var(--color-text-muted)' }}>
               Passionate about creating innovative digital solutions that bridge the gap between 
               cutting-edge technology and exceptional user experiences.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{ animationDelay: '400ms' }}>
               <Button 
                 onClick={() => scrollToSection('projects')}
                 size="lg"

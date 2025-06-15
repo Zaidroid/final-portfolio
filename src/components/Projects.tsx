@@ -1,12 +1,15 @@
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Project, Category } from '@/types/project';
 import { ProjectFilters } from './ProjectFilters';
 import { ProjectsGrid } from './ProjectsGrid';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const Projects = () => {
   const [filter, setFilter] = useState('all');
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isVisible = useIntersectionObserver(sectionRef, { triggerOnce: true });
 
   const projects: Project[] = [
     {
@@ -67,9 +70,9 @@ const Projects = () => {
     : projects.filter(project => project.category === filter);
 
   return (
-    <section id="projects" className="py-20 relative">
+    <section id="projects" className="py-20 relative" ref={sectionRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-slide-up">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-reveal-up' : 'opacity-0'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">My Work</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Here's a selection of projects I'm proud of. Each one was a unique challenge.
@@ -85,7 +88,7 @@ const Projects = () => {
         <ProjectsGrid projects={filteredProjects} />
 
         {/* View More Button */}
-        <div className="text-center mt-16 animate-slide-up">
+        <div className={`text-center mt-16 transition-all duration-1000 ${isVisible ? 'animate-reveal-up' : 'opacity-0'}`} style={{ animationDelay: '300ms' }}>
           <Button 
             variant="outline"
             size="lg"

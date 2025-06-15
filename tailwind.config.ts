@@ -95,36 +95,41 @@ export default {
 					'50%': { opacity: '0.5' }
 				},
 				'slide-up': {
-					'0%': { opacity: '0', transform: 'translateY(30px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
+					from: { opacity: '0', transform: 'translateY(30px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
 				},
 				'slide-in-left': {
-					'0%': { opacity: '0', transform: 'translateX(-30px)' },
-					'100%': { opacity: '1', transform: 'translateX(0)' }
+					from: { opacity: '0', transform: 'translateX(-30px)' },
+					to: { opacity: '1', transform: 'translateX(0)' }
 				},
 				'slide-in-right': {
-					'0%': { opacity: '0', transform: 'translateX(30px)' },
-					'100%': { opacity: '1', transform: 'translateX(0)' }
+					from: { opacity: '0', transform: 'translateX(30px)' },
+					to: { opacity: '1', transform: 'translateX(0)' }
 				},
 				'scale-in': {
-					'0%': { opacity: '0', transform: 'scale(0.8)' },
-					'100%': { opacity: '1', transform: 'scale(1)' }
+					from: { opacity: '0', transform: 'scale(0.8)' },
+					to: { opacity: '1', transform: 'scale(1)' }
 				},
 				'rotate-3d': {
 					'0%': { transform: 'rotateX(0deg) rotateY(0deg)' },
 					'100%': { transform: 'rotateX(360deg) rotateY(360deg)' }
-				}
+				},
+        'reveal-up': {
+            from: { opacity: '0', transform: 'translateY(20px) scale(0.98)' },
+            to: { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
+				'accordion-down': 'accordion-down 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+				'accordion-up': 'accordion-up 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 				'float': 'float 6s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite',
-				'slide-up': 'slide-up 0.6s ease-out',
-				'slide-in-left': 'slide-in-left 0.6s ease-out',
-				'slide-in-right': 'slide-in-right 0.6s ease-out',
-				'scale-in': 'scale-in 0.6s ease-out',
-				'rotate-3d': 'rotate-3d 20s linear infinite'
+				'glow': 'glow 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+				'slide-up': 'slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+				'slide-in-left': 'slide-in-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+				'slide-in-right': 'slide-in-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+				'scale-in': 'scale-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+				'rotate-3d': 'rotate-3d 20s linear infinite',
+        'reveal-up': 'reveal-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

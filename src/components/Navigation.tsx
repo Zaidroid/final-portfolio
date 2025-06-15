@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { AdvancedThemeToggle } from './AdvancedThemeToggle';
@@ -70,8 +71,8 @@ const Navigation = () => {
 
   return (
     <header className="fixed z-50 top-0 left-0 right-0">
-      <div className={`flex justify-center transition-all duration-300 ease-in-out ${isScrolled && !isMenuOpen ? 'pt-4' : 'pt-0'}`}>
-        <div className={`transition-all duration-300 ease-in-out ${isScrolled && !isMenuOpen ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
+      <div className={`flex justify-center transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isScrolled && !isMenuOpen ? 'pt-4' : 'pt-0'}`}>
+        <div className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isScrolled && !isMenuOpen ? 'glass rounded-full shadow-lg' : 'w-full'}`}>
           <div className={`container mx-auto flex items-center justify-between transition-all duration-300 ease-in-out ${isScrolled && !isMenuOpen ? 'px-4 py-2 gap-x-6' : 'px-6 py-4'}`}>
             <div className="text-2xl font-bold brand-title">
               ZaidLab
@@ -82,7 +83,7 @@ const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                  className={`relative text-sm font-medium transition-all duration-200 hover:scale-105 ${
                     activeSection === item.id ? 'nav-active' : 'hover:text-[var(--color-primary)]'
                   }`}
                   style={{ color: activeSection === item.id ? 'var(--color-primary)' : 'var(--color-text)' }}
@@ -112,7 +113,7 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed top-0 left-0 w-full h-full z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      <div className={`md:hidden fixed top-0 left-0 w-full h-full z-40 transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
            style={{ background: 'color-mix(in srgb, var(--color-background) 95%, transparent 5%)', backdropFilter: 'blur(12px)' }}>
         <div className="container h-full mx-auto flex flex-col justify-center items-center gap-y-8">
             {navItems.map((item) => (
