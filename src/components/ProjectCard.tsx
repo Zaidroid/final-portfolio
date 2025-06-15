@@ -20,7 +20,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     >
       <div className="relative overflow-hidden h-48">
         <img 
-          src={`https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&crop=center`}
+          src={project.image}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
