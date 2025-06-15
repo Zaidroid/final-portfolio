@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, Smartphone, Globe, Database, Cloud, Zap } from 'lucide-react';
 
@@ -97,7 +96,7 @@ const Services = () => {
             >
               Get Started Today
             </button>
-          </div>
+          </Card>
         </div>
       </div>
     </section>
