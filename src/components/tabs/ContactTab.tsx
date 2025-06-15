@@ -1,4 +1,3 @@
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -130,7 +129,7 @@ const ContactTab = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 transition-all duration-300 hover-glow">
+                <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 transition-all duration-300 hover-glow">
                   Send Message
                 </Button>
               </form>
