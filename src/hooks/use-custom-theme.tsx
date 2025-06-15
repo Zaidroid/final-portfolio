@@ -14,23 +14,33 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const CustomThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || themeNames[0];
+      const storedTheme = localStorage.getItem('theme');
+      // Ensure the stored theme is one of the available themes
+      if (storedTheme && themeNames.includes(storedTheme)) {
+        return storedTheme;
+      }
     }
+    // Fallback to the first theme in the list
     return themeNames[0];
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const currentThemeName = localStorage.getItem('theme') || themeNames[0];
-    const currentThemeObject = themes[currentThemeName];
+    const currentThemeObject = themes[theme];
+
+    if (!currentThemeObject) {
+      // This is a safeguard and should not be hit with the new state logic,
+      // but it prevents a crash if something goes wrong.
+      return;
+    }
     
-    // Remove all theme classes
+    // Remove all theme classes to avoid conflicts
     themeNames.forEach(name => root.classList.remove(`theme-${toKebabCase(name)}`));
     
     // Add current theme class
-    root.classList.add(`theme-${toKebabCase(currentThemeName)}`);
+    root.classList.add(`theme-${toKebabCase(theme)}`);
 
-    // Apply CSS variables
+    // Apply CSS variables for the current theme
     Object.entries(currentThemeObject.vars).forEach(([key, value]) => {
       root.style.setProperty(key, value);
     });
