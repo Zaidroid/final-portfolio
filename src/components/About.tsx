@@ -1,6 +1,6 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import CountUp from './CountUp';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const About = () => {
   const skills = [
@@ -48,54 +48,55 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-1 gap-16 items-start">
-          {/* Experience Timeline */}
-          <div className="animate-slide-in-right">
-            <h3 className="text-3xl font-bold mb-12 text-foreground text-center">My Journey</h3>
-            <div className="relative max-w-2xl mx-auto">
-              {/* Vertical line */}
-              <div className="absolute left-4 top-0 h-full w-0.5 bg-border -z-10"></div>
-              <div className="space-y-12">
-                {experiences.map((exp, index) => (
-                  <div key={index} className="relative pl-12">
-                    <div className="absolute left-4 top-1 -translate-x-1/2">
-                      <div className="h-4 w-4 bg-background border-2 border-primary rounded-full"></div>
-                    </div>
-                    <Card className="hover-glow card-3d" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <CardContent className="p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                          <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold w-fit">
-                            {exp.year}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-xl font-semibold text-foreground mb-1">{exp.title}</h4>
-                            <p className="text-purple-400 font-medium mb-2">{exp.company}</p>
-                            <p className="text-muted-foreground">{exp.description}</p>
-                          </div>
+        <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <Tabs defaultValue="journey" className="max-w-4xl mx-auto">
+              <TabsList className="grid w-full grid-cols-2 mb-8 glass">
+                <TabsTrigger value="journey">My Journey</TabsTrigger>
+                <TabsTrigger value="skills">Technical Skills</TabsTrigger>
+              </TabsList>
+              <TabsContent value="journey" className="animate-scale-in">
+                <div className="relative max-w-2xl mx-auto">
+                  {/* Vertical line */}
+                  <div className="absolute left-4 top-0 h-full w-0.5 bg-border -z-10"></div>
+                  <div className="space-y-12">
+                    {experiences.map((exp, index) => (
+                      <div key={index} className="relative pl-12">
+                        <div className="absolute left-4 top-1 -translate-x-1/2">
+                          <div className="h-4 w-4 bg-background border-2 border-primary rounded-full"></div>
                         </div>
-                      </CardContent>
-                    </Card>
+                        <Card className="hover-glow card-3d" style={{ animationDelay: `${index * 0.1}s` }}>
+                          <CardContent className="p-6">
+                            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                              <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold w-fit">
+                                {exp.year}
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="text-xl font-semibold text-foreground mb-1">{exp.title}</h4>
+                                <p className="text-purple-400 font-medium mb-2">{exp.company}</p>
+                                <p className="text-muted-foreground">{exp.description}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Skills Section */}
-          <div className="animate-slide-in-left mt-8">
-            <h3 className="text-3xl font-bold mb-8 text-foreground text-center">Technical Skills</h3>
-            <Card className="max-w-3xl mx-auto">
-              <CardContent className="p-8">
-                <div className="flex flex-wrap justify-center gap-4">
-                  {skills.map((skill) => (
-                    <div key={skill.name} className="glass text-foreground font-medium px-4 py-2 rounded-full text-sm hover-glow transition-all cursor-default border border-transparent hover:border-purple-500/50">
-                      {skill.name}
-                    </div>
-                  ))}
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </TabsContent>
+              <TabsContent value="skills" className="animate-scale-in">
+                  <Card className="max-w-3xl mx-auto">
+                    <CardContent className="p-8">
+                      <div className="flex flex-wrap justify-center gap-4">
+                        {skills.map((skill) => (
+                          <div key={skill.name} className="glass text-foreground font-medium px-4 py-2 rounded-full text-sm hover-glow transition-all cursor-default border border-transparent hover:border-purple-500/50">
+                            {skill.name}
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+              </TabsContent>
+            </Tabs>
         </div>
 
         {/* Personal Info */}
