@@ -48,6 +48,26 @@ const About = () => {
           </p>
         </div>
 
+        {/* Personal Info */}
+        <div className="mb-16 text-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <Card className="p-8 rounded-2xl max-w-4xl mx-auto hover-glow">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={50} suffix="+" /></h4>
+                <p className="text-muted-foreground">Projects Completed</p>
+              </div>
+              <div>
+                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={5} suffix="+" /></h4>
+                <p className="text-muted-foreground">Years Experience</p>
+              </div>
+              <div>
+                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={100} suffix="%" /></h4>
+                <p className="text-muted-foreground">Client Satisfaction</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Tabs defaultValue="journey" className="max-w-4xl mx-auto">
               <TabsList className="grid w-full grid-cols-2 mb-8 glass">
@@ -97,26 +117,6 @@ const About = () => {
                   </Card>
               </TabsContent>
             </Tabs>
-        </div>
-
-        {/* Personal Info */}
-        <div className="mt-20 text-center">
-          <Card className="p-8 rounded-2xl max-w-4xl mx-auto hover-glow animate-scale-in">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={50} suffix="+" /></h4>
-                <p className="text-muted-foreground">Projects Completed</p>
-              </div>
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={5} suffix="+" /></h4>
-                <p className="text-muted-foreground">Years Experience</p>
-              </div>
-              <div>
-                <h4 className="text-3xl font-bold gradient-text mb-2"><CountUp end={100} suffix="%" /></h4>
-                <p className="text-muted-foreground">Client Satisfaction</p>
-              </div>
-            </div>
-          </Card>
         </div>
       </div>
     </section>

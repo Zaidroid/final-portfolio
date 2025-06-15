@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -61,9 +60,8 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <Card className="glass hover-glow animate-slide-in-left">
+        <div className="max-w-3xl mx-auto">
+          <Card className="glass hover-glow animate-slide-up p-4 sm:p-8">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-white">Send a Message</CardTitle>
             </CardHeader>
@@ -139,21 +137,15 @@ const Contact = () => {
                   Send Message
                 </Button>
               </form>
-            </CardContent>
-          </Card>
 
-          {/* Contact Information */}
-          <div className="animate-slide-in-right">
-            <div className="space-y-8">
-              <div className="glass p-8 rounded-2xl hover-glow">
-                <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-                <p className="text-gray-300 mb-8 leading-relaxed">
+              <div className="mt-12 pt-8 border-t border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">Let's Connect</h3>
+                <p className="text-gray-300 mb-8 leading-relaxed text-center">
                   Whether you have a project in mind, need technical consultation, 
-                  or just want to say hello, I'd love to hear from you. Let's create 
-                  something amazing together!
+                  or just want to say hello, I'd love to hear from you.
                 </p>
                 
-                <div className="space-y-4">
+                <div className="flex flex-wrap justify-center gap-x-8 gap-y-6 mb-12">
                   {contactInfo.map((info) => (
                     <div key={info.title} className="flex items-center gap-4">
                       <span className="text-2xl">{info.icon}</span>
@@ -164,12 +156,9 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-              </div>
 
-              {/* Social Links */}
-              <div className="glass p-8 rounded-2xl hover-glow">
-                <h3 className="text-xl font-bold text-white mb-6">Follow Me</h3>
-                <div className="flex gap-4">
+                <h3 className="text-xl font-bold text-white mb-6 text-center">Follow Me</h3>
+                <div className="flex gap-4 justify-center">
                   {['LinkedIn', 'GitHub', 'Twitter', 'Instagram'].map((platform) => (
                     <button
                       key={platform}
@@ -180,19 +169,8 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-              
-              {/* Availability */}
-              <div className="glass p-6 rounded-2xl hover-glow text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-                  <span className="text-green-400 font-semibold">Available for new projects</span>
-                </div>
-                <p className="text-gray-300 text-sm">
-                  Currently accepting new clients for 2024
-                </p>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

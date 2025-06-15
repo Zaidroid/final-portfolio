@@ -1,6 +1,6 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, Smartphone, Globe, Database, Cloud, Zap } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const Services = () => {
   const services = [
@@ -52,42 +52,40 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Card 
-              key={service.title} 
-              className="hover-glow card-3d group cursor-pointer animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardHeader className="text-center pb-4">
-                <div
-                  className="mx-auto mb-4 p-3 rounded-full w-fit group-hover:scale-110 transition-transform duration-300"
-                  style={{
-                    background: `linear-gradient(to right, var(--color-primary), var(--color-accent))`,
-                    color: `var(--color-surface)`
-                  }}
-                >
-                  {service.icon}
-                </div>
-                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-[var(--color-primary)] transition-colors duration-300">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="text-sm text-muted-foreground/80 flex items-center justify-center gap-2">
-                      <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="max-w-4xl mx-auto animate-slide-up">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {services.map((service, index) => (
+              <AccordionItem value={`item-${index}`} key={service.title} className="glass rounded-lg hover-glow border-none">
+                <AccordionTrigger className="p-6 text-left hover:no-underline">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="p-3 rounded-full w-fit group-hover:scale-110 transition-transform duration-300"
+                      style={{
+                        background: `linear-gradient(to right, var(--color-primary), var(--color-accent))`,
+                        color: `var(--color-surface)`
+                      }}
+                    >
+                      {service.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="p-6 pt-0">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-3 pl-4 border-l-2 border-primary/30">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="text-sm text-muted-foreground/80 flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         {/* Call to Action */}
