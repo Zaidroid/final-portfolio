@@ -7,7 +7,7 @@ const phrases = [
   "Crafting Seamless User Experiences",
   "Transforming Ideas into Reality",
 ];
-const TYPING_SPEED = 100;
+const TYPING_SPEED = 75;
 const DELETING_SPEED = 50;
 const PAUSE_DURATION = 2000;
 
