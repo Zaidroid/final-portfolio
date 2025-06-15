@@ -2,20 +2,49 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
+const phrases = [
+  "Full-Stack Developer & Tech Innovator",
+  "Crafting Seamless User Experiences",
+  "Transforming Ideas into Reality",
+];
+const TYPING_SPEED = 100;
+const DELETING_SPEED = 50;
+const PAUSE_DURATION = 2000;
+
 const Hero = () => {
   const [text, setText] = useState('');
-  const fullText = "Full-Stack Developer & Tech Innovator";
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   
   useEffect(() => {
-    let index = 0;
-    const typingTimer = setInterval(() => {
-      setText(fullText.slice(0, index));
-      index++;
-      if (index > fullText.length) {
-        clearInterval(typingTimer);
-      }
-    }, 100);
+    const currentPhrase = phrases[phraseIndex];
+    let timeoutId: number;
 
+    if (isDeleting) {
+      if (text.length > 0) {
+        timeoutId = window.setTimeout(() => {
+          setText(text.substring(0, text.length - 1));
+        }, DELETING_SPEED);
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      }
+    } else {
+      if (text.length < currentPhrase.length) {
+        timeoutId = window.setTimeout(() => {
+          setText(currentPhrase.substring(0, text.length + 1));
+        }, TYPING_SPEED);
+      } else {
+        timeoutId = window.setTimeout(() => {
+          setIsDeleting(true);
+        }, PAUSE_DURATION);
+      }
+    }
+
+    return () => window.clearTimeout(timeoutId);
+  }, [text, isDeleting, phraseIndex]);
+
+  useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
       const x = (clientX / window.innerWidth - 0.5) * -1;
@@ -41,7 +70,6 @@ const Hero = () => {
     window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
-      clearInterval(typingTimer);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
