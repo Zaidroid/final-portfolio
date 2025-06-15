@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useMousePosition } from '@/hooks/useMousePosition';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const phrases = [
   "Full-Stack Developer & Tech Innovator",
@@ -74,7 +74,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden [perspective:1000px]">
-      {/* Background elements have been moved to the global AnimatedBackground component */}
+      <AnimatedBackground />
       
       <div className="relative z-10 parallax-effect hero-content-tilt transition-transform duration-100 ease-out" data-speed="5" style={{ transformStyle: 'preserve-3d' }}>
         <div className="container mx-auto px-6 text-center">

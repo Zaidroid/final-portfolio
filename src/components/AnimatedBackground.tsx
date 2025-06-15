@@ -1,17 +1,26 @@
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMousePosition } from '@/hooks/useMousePosition';
 
 const AnimatedBackground = () => {
   const { x: clientX, y: clientY } = useMousePosition();
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    // No mouse movement yet, or tab is not active.
-    if (clientX === 0 && clientY === 0) return;
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Only run if there is interaction (mouse move or scroll)
+    if (clientX === 0 && clientY === 0 && scrollY === 0) return;
 
     const animationFrameId = requestAnimationFrame(() => {
       const x = (clientX / window.innerWidth - 0.5) * -1;
       const y = (clientY / window.innerHeight - 0.5) * -1;
+      
+      // Fades out over the first 80% of the viewport height scroll.
+      const scrollFactor = Math.max(0, 1 - scrollY / (window.innerHeight * 0.8));
 
       const parallaxElements = document.querySelectorAll<HTMLElement>('.parallax-bg-element');
       
@@ -39,17 +48,18 @@ const AnimatedBackground = () => {
         }
 
         // Add a smooth transition to the transformations.
-        el.style.transition = 'transform 0.1s ease-out';
+        el.style.transition = 'transform 0.1s ease-out, opacity 0.3s ease-out';
         el.style.transform = `translateX(${parallaxTranslateX}px) translateY(${parallaxTranslateY}px) scale(${scale})`;
+        el.style.opacity = `${scrollFactor}`;
       });
     });
 
     return () => cancelAnimationFrame(animationFrameId);
 
-  }, [clientX, clientY]);
+  }, [clientX, clientY, scrollY]);
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
+    <div className="absolute inset-0 -z-10 pointer-events-none">
       {/* Dynamic Parallax Background Elements */}
       <div className="absolute inset-0">
         <div className="parallax-bg-element absolute top-20 left-20 w-72 h-72" data-speed="20">
