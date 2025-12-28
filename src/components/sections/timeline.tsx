@@ -350,7 +350,7 @@ const timelineData: TimelineEntry[] = [
         icon: Lightbulb,
         tags: ["Strategy", "Incubation", "Community", "Events"],
         link: "http://co.city.rawabi.ps/",
-        // Row 3: spans 1
+        span: "md:col-span-2", // Row 4: spans 2
         theme: themes.rawabi
     }
 ];
@@ -392,11 +392,14 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
                 rounded-2xl min-h-[160px]
                 bg-white/80 dark:bg-white/[0.03]
                 border border-slate-200/70 dark:border-white/[0.06]
-                backdrop-blur-sm
                 transition-all duration-300 ease-out
                 hover:border-slate-300 dark:hover:border-white/[0.12]
                 hover:shadow-lg dark:hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.4)]
                 hover:-translate-y-1
+                ${item.type === 'job'
+                    ? 'border-slate-300 dark:border-white/20'
+                    : 'border-dashed border-slate-200 dark:border-white/10'
+                }
                 ${item.span || ''}
             `}
         >
@@ -443,6 +446,17 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
                     <p className="text-xs text-slate-600 dark:text-white/60 leading-relaxed line-clamp-2">
                         {item.desc}
                     </p>
+                </div>
+
+                {/* Visual Differentiation Badge */}
+                <div className={`
+                    absolute top-3 right-3 px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest
+                    ${item.type === 'job'
+                        ? 'bg-slate-900 text-white dark:bg-white dark:text-black border border-white/10'
+                        : 'bg-white/50 dark:bg-white/5 text-slate-500 dark:text-white/40 border border-slate-200 dark:border-white/10'
+                    }
+                `}>
+                    {item.type}
                 </div>
 
                 {/* Hover Arrow */}
@@ -631,26 +645,6 @@ function DetailModal({ item, onClose }: { item: TimelineEntry; onClose: () => vo
                                 </div>
                             </div>
 
-                            {/* Action Button */}
-                            {item.link && item.link !== "#" && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.2 }}
-                                >
-                                    <Button
-                                        onClick={() => window.open(item.link, '_blank')}
-                                        size="lg"
-                                        className={`w-full sm:w-auto px-8 py-6 text-base font-semibold
-                                                   bg-slate-900 text-white hover:bg-slate-800 
-                                                   dark:bg-white dark:text-black dark:hover:bg-slate-100
-                                                   rounded-xl transition-all duration-200 hover:scale-[1.02]`}
-                                    >
-                                        <ExternalLink className="mr-2 h-5 w-5" />
-                                        View Live Project
-                                    </Button>
-                                </motion.div>
-                            )}
                         </motion.div>
                     </div>
                 </div>
