@@ -418,15 +418,28 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
                         <item.icon className={`w-4 h-4 ${theme.accent}`} />
                     </div>
 
-                    {item.isOngoing && (
-                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/60 dark:bg-white/10">
-                            <span className="relative flex h-1.5 w-1.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tatreez-red opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-tatreez-red"></span>
-                            </span>
-                            <span className="text-[9px] font-semibold text-slate-600 dark:text-white/60 uppercase">Active</span>
+                    <div className="flex flex-col items-end gap-1.5">
+                        {/* Type Badge */}
+                        <div className={`
+                            px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest
+                            ${item.type === 'job'
+                                ? 'bg-slate-900 text-white dark:bg-white dark:text-black border border-white/10 shadow-sm'
+                                : 'bg-white/50 dark:bg-white/5 text-slate-500 dark:text-white/40 border border-slate-200 dark:border-white/10'
+                            }
+                        `}>
+                            {item.type}
                         </div>
-                    )}
+
+                        {item.isOngoing && (
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/60 dark:bg-white/10 border border-white/5 shadow-sm">
+                                <span className="relative flex h-1.5 w-1.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tatreez-red opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-tatreez-red"></span>
+                                </span>
+                                <span className="text-[9px] font-semibold text-slate-600 dark:text-white/60 uppercase">Active</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Main Content */}
@@ -446,17 +459,6 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
                     <p className="text-xs text-slate-600 dark:text-white/60 leading-relaxed line-clamp-2">
                         {item.desc}
                     </p>
-                </div>
-
-                {/* Visual Differentiation Badge */}
-                <div className={`
-                    absolute top-3 right-3 px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest
-                    ${item.type === 'job'
-                        ? 'bg-slate-900 text-white dark:bg-white dark:text-black border border-white/10'
-                        : 'bg-white/50 dark:bg-white/5 text-slate-500 dark:text-white/40 border border-slate-200 dark:border-white/10'
-                    }
-                `}>
-                    {item.type}
                 </div>
 
                 {/* Hover Arrow */}
