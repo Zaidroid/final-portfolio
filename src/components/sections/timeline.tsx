@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { ArrowUpRight, Database, Globe, Heart, Rocket, X, Zap, BarChart3, Cpu, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Database, Globe, Heart, Rocket, X, Zap, BarChart3, Cpu, ExternalLink, Lightbulb, Layout } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
 
 // --- Types ---
@@ -120,6 +120,31 @@ const patterns = {
             <rect width="100%" height="100%" fill="url(#medical)" className="text-pink-400" />
         </svg>
     ),
+    // Rawabi Pattern
+    rawabi: (
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="rawabi" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle cx="10" cy="10" r="1.5" fill="currentColor" />
+                    <path d="M 0 10 L 20 10 M 10 0 L 10 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#rawabi)" className="text-violet-600" />
+        </svg>
+    ),
+    // Web Dev / Layout pattern
+    layout: (
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="layout" width="24" height="24" patternUnits="userSpaceOnUse">
+                    <rect x="2" y="2" width="20" height="20" rx="2" fill="none" stroke="currentColor" strokeWidth="1" />
+                    <line x1="2" y1="8" x2="22" y2="8" stroke="currentColor" strokeWidth="0.5" />
+                    <line x1="8" y1="8" x2="8" y2="22" stroke="currentColor" strokeWidth="0.5" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#layout)" className="text-cyan-500" />
+        </svg>
+    ),
 };
 
 // --- Unique Themes per Card ---
@@ -172,6 +197,20 @@ const themes: Record<string, CardTheme> = {
         gradient: "from-pink-500/10 via-transparent to-transparent",
         iconBg: "bg-pink-500/10 dark:bg-pink-500/20",
         pattern: patterns.medical
+    },
+    rawabi: {
+        accent: "text-violet-500",
+        accentLight: "text-violet-400",
+        gradient: "from-violet-500/10 via-transparent to-transparent",
+        iconBg: "bg-violet-500/10 dark:bg-violet-500/20",
+        pattern: patterns.rawabi
+    },
+    "gsg-web": {
+        accent: "text-cyan-500",
+        accentLight: "text-cyan-400",
+        gradient: "from-cyan-500/10 via-transparent to-transparent",
+        iconBg: "bg-cyan-500/10 dark:bg-cyan-500/20",
+        pattern: patterns.layout
     }
 };
 
@@ -191,6 +230,22 @@ const timelineData: TimelineEntry[] = [
         isOngoing: true,
         span: "md:col-span-2", // Row 1: spans 2
         theme: themes.gsg
+    },
+    {
+        id: "gsg-web",
+        type: "project",
+        year: "2025",
+        dateRange: "2024 - Present",
+        title: "GSG Platform Revamp",
+        org: "Pro Bono Project",
+        desc: "Modern digital presence & admin dashboard for Gaza Sky Geeks.",
+        longDesc: "A complete overhaul of the Gaza Sky Geeks digital presence, built as a gift to the community. This project includes a high-performance public website and a custom administrative dashboard to streamline operations for the GSG team.",
+        icon: Layout,
+        tags: ["React", "Dashboard", "UI/UX", "Community"],
+        link: "https://gsg.zaidlab.xyz",
+        isOngoing: true,
+        // Row 1: spans 1
+        theme: themes["gsg-web"]
     },
     {
         id: "goethe-workshops",
@@ -282,6 +337,21 @@ const timelineData: TimelineEntry[] = [
         link: "#",
         // Row 3: spans 1
         theme: themes["hope-hand"]
+    },
+    {
+        id: "rawabi",
+        type: "job",
+        year: "2017",
+        dateRange: "Oct 2017 - Aug 2019",
+        title: "Innovation Strategist",
+        org: "Rawabi City",
+        desc: "Established business incubator & community engagement ecosystem.",
+        longDesc: "Established an effective business incubator for tenants' startups & entrepreneurs with strong links to community engagement activities as well as global incubators and coworking spaces. As the leading strategist I planned & managed networking events & lectures at 'COnnect' (the project's coworking space), including 2 global annual events such as 'Forbes 30 under 30'. Partnered with the 'Massarak Tech' team to manage administrative processes including procurement, budgeting, & hiring.",
+        icon: Lightbulb,
+        tags: ["Strategy", "Incubation", "Community", "Events"],
+        link: "http://co.city.rawabi.ps/",
+        // Row 3: spans 1
+        theme: themes.rawabi
     }
 ];
 
