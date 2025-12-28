@@ -34,115 +34,75 @@ interface TimelineEntry {
 
 // --- Unique Patterns for Each Card ---
 const patterns = {
-    // Startup/Tech Grid Lines
+    // GSG - Market Access / Expanding Arcs
     gsg: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="grid-gsg" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-gsg)" className="text-blue-600" />
+        <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 group-hover:opacity-20 group-hover:scale-110" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
+            <circle cx="100" cy="100" r="100" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
+            <circle cx="100" cy="100" r="120" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500" />
         </svg>
     ),
-    // Tatreez-inspired geometric pattern
-    tatreez: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06] dark:opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="tatreez" width="24" height="24" patternUnits="userSpaceOnUse">
-                    <path d="M12 0L24 12L12 24L0 12Z" fill="none" stroke="currentColor" strokeWidth="1" />
-                    <path d="M12 6L18 12L12 18L6 12Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#tatreez)" className="text-tatreez-red" />
-        </svg>
-    ),
-    // Circuit/Manufacturing pattern
-    circuit: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="circuit" width="30" height="30" patternUnits="userSpaceOnUse">
-                    <circle cx="5" cy="5" r="1" fill="currentColor" />
-                    <path d="M5 5 L15 5 L15 15" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                    <circle cx="15" cy="15" r="1" fill="currentColor" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#circuit)" className="text-amber-500" />
-        </svg>
-    ),
-    // Data stream pattern
-    data: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="data" width="16" height="16" patternUnits="userSpaceOnUse">
-                    <rect x="2" y="2" width="2" height="2" fill="currentColor" />
-                    <rect x="8" y="6" width="2" height="2" fill="currentColor" />
-                    <rect x="12" y="10" width="2" height="2" fill="currentColor" />
-                    <rect x="4" y="12" width="2" height="2" fill="currentColor" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#data)" className="text-emerald-500" />
-        </svg>
-    ),
-    // Chart lines pattern
-    chart: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="chart" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M0 30 L10 20 L20 25 L30 10 L40 15" fill="none" stroke="currentColor" strokeWidth="1" />
-                    <line x1="0" y1="40" x2="40" y2="40" stroke="currentColor" strokeWidth="0.3" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#chart)" className="text-rose-500" />
-        </svg>
-    ),
-    // Archive/Document grid
-    archive: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="archive" width="20" height="12" patternUnits="userSpaceOnUse">
-                    <rect x="1" y="1" width="18" height="10" fill="none" stroke="currentColor" strokeWidth="0.3" rx="1" />
-                    <line x1="4" y1="4" x2="16" y2="4" stroke="currentColor" strokeWidth="0.3" />
-                    <line x1="4" y1="7" x2="12" y2="7" stroke="currentColor" strokeWidth="0.3" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#archive)" className="text-indigo-500" />
-        </svg>
-    ),
-    // Heart/Medical pattern
-    medical: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="medical" width="24" height="24" patternUnits="userSpaceOnUse">
-                    <path d="M12 8 C12 4, 8 4, 8 8 C8 12, 12 16, 12 16 C12 16, 16 12, 16 8 C16 4, 12 4, 12 8" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#medical)" className="text-pink-400" />
-        </svg>
-    ),
-    // Rawabi Pattern
-    rawabi: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="rawabi" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <circle cx="10" cy="10" r="1.5" fill="currentColor" />
-                    <path d="M 0 10 L 20 10 M 10 0 L 10 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#rawabi)" className="text-violet-600" />
-        </svg>
-    ),
-    // Web Dev / Layout pattern
+    // GSG Web - Abstract "Layer Stack" (Platform Depth)
     layout: (
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="layout" width="24" height="24" patternUnits="userSpaceOnUse">
-                    <rect x="2" y="2" width="20" height="20" rx="2" fill="none" stroke="currentColor" strokeWidth="1" />
-                    <line x1="2" y1="8" x2="22" y2="8" stroke="currentColor" strokeWidth="0.5" />
-                    <line x1="8" y1="8" x2="8" y2="22" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#layout)" className="text-cyan-500" />
+        <svg className="absolute -right-8 -bottom-8 w-48 h-48 opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 group-hover:opacity-20 group-hover:translate-x-4" viewBox="0 0 100 100">
+            <rect x="10" y="20" width="70" height="50" rx="2" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-cyan-500" />
+            <rect x="25" y="35" width="70" height="50" rx="2" fill="none" stroke="currentColor" strokeWidth="0.3" className="text-cyan-500/50" />
+            <rect x="40" y="50" width="70" height="50" rx="2" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-cyan-500/20" />
+        </svg>
+    ),
+    // Goethe - Precision Arcs (3D Path)
+    circuit: (
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06] transition-all duration-1000 group-hover:opacity-20 group-hover:rotate-12" viewBox="0 0 100 100">
+            <path d="M 20 50 Q 50 10 80 50 T 20 50" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-amber-500" strokeDasharray="1 2" />
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.2" className="text-amber-500" />
+        </svg>
+    ),
+    // Living Thob - Single High-Def Tatreez Focal
+    tatreez: (
+        <svg className="absolute -right-8 -bottom-8 w-48 h-48 opacity-[0.05] dark:opacity-[0.08] transition-all duration-700 group-hover:opacity-25 group-hover:scale-110 group-hover:-rotate-12" viewBox="0 0 24 24">
+            <path d="M12 2L22 12L12 22L2 12Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-tatreez-red" />
+            <path d="M12 6L18 12L12 18L6 12Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-tatreez-red/50" />
+            <circle cx="12" cy="12" r="1" fill="currentColor" className="text-tatreez-red animate-pulse" />
+        </svg>
+    ),
+    // Pal Data - Core Data Stack
+    data: (
+        <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 group-hover:opacity-20 group-hover:scale-105" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.3" className="text-emerald-500" strokeDasharray="4 4" />
+            <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-emerald-500" />
+            <circle cx="50" cy="50" r="10" fill="currentColor" className="text-emerald-500/30" />
+        </svg>
+    ),
+    // Palboard - Sinusoidal Wave
+    chart: (
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07] transition-all duration-700 group-hover:opacity-20 group-hover:translate-y-2" viewBox="0 0 100 50" preserveAspectRatio="none">
+            <path d="M 0 25 Q 25 0 50 25 T 100 25" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-rose-500" />
+            <path d="M 0 35 Q 25 10 50 35 T 100 35" fill="none" stroke="currentColor" strokeWidth="0.3" className="text-rose-500/40" />
+        </svg>
+    ),
+    // PACC - Data Layers / Depth
+    archive: (
+        <svg className="absolute right-0 bottom-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 group-hover:opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect x="60" y="20" width="40" height="2" fill="currentColor" className="text-indigo-500" />
+            <rect x="40" y="40" width="60" height="2" fill="currentColor" className="text-indigo-500" />
+            <rect x="70" y="60" width="30" height="2" fill="currentColor" className="text-indigo-500" />
+        </svg>
+    ),
+    // Hope in Hand - Geometric Mesh Sphere
+    medical: (
+        <svg className="absolute -right-20 -bottom-20 w-80 h-80 opacity-[0.03] dark:opacity-[0.06] transition-all duration-1000 group-hover:opacity-15 group-hover:scale-110" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-pink-400" />
+            <path d="M 50 5 L 95 50 L 50 95 L 5 50 Z" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-pink-400" />
+            <path d="M 5 50 L 95 50 M 50 5 L 50 95" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-pink-400" />
+            <circle cx="50" cy="50" r="2" fill="currentColor" className="text-pink-400" />
+        </svg>
+    ),
+    // Rawabi - Minimal Architectural Grid
+    rawabi: (
+        <svg className="absolute left-0 bottom-0 w-32 h-32 opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 group-hover:opacity-20 group-hover:translate-x-2" viewBox="0 0 100 100">
+            <line x1="0" y1="100" x2="100" y2="0" stroke="currentColor" strokeWidth="0.2" className="text-violet-500" />
+            <line x1="20" y1="100" x2="100" y2="20" stroke="currentColor" strokeWidth="0.2" className="text-violet-500" />
+            <line x1="40" y1="100" x2="100" y2="40" stroke="currentColor" strokeWidth="0.2" className="text-violet-500" />
         </svg>
     ),
 };
@@ -390,15 +350,17 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
             className={`
                 group relative cursor-pointer overflow-hidden
                 rounded-2xl min-h-[160px]
-                bg-white/80 dark:bg-white/[0.03]
-                border border-slate-200/70 dark:border-white/[0.06]
+                bg-white/10 dark:bg-black/20
+                border border-slate-200/5 dark:border-white/5
+                backdrop-blur-3xl
                 transition-all duration-300 ease-out
-                hover:border-slate-300 dark:hover:border-white/[0.12]
-                hover:shadow-lg dark:hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.4)]
+                hover:bg-white/40 dark:hover:bg-black/50
+                hover:border-slate-300 dark:hover:border-white/20
+                hover:shadow-xl dark:hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)]
                 hover:-translate-y-1
                 ${item.type === 'job'
-                    ? 'border-slate-300 dark:border-white/20'
-                    : 'border-dashed border-slate-200 dark:border-white/10'
+                    ? 'border-slate-300 dark:border-white/25 shadow-sm'
+                    : 'border-dashed border-slate-200/50 dark:border-white/[0.08]'
                 }
                 ${item.span || ''}
             `}
@@ -407,7 +369,7 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
             {theme.pattern}
 
             {/* Gradient Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-80`} />
+            <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-[0.08] dark:opacity-[0.1]`} />
 
             {/* Content */}
             <div className="relative z-10 p-5 h-full flex flex-col" ref={internalRef}>
@@ -474,6 +436,16 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, {
 SpotlightCard.displayName = "SpotlightCard";
 
 // --- Modal ---
+function getLinkDetails(url: string) {
+    if (url.includes("github.com")) {
+        return { label: "GitHub", icon: Globe }; // Simple globe for repo, as Github icon might not be in Lucide
+    }
+    if (url.includes("zaidlab.xyz")) {
+        return { label: "Live Demo", icon: Zap };
+    }
+    return { label: "Visit Site", icon: ExternalLink };
+}
+
 function DetailModal({ item, onClose }: { item: TimelineEntry; onClose: () => void }) {
     const { theme } = item;
     const modalRef = useRef<HTMLDivElement>(null);
@@ -645,7 +617,34 @@ function DetailModal({ item, onClose }: { item: TimelineEntry; onClose: () => vo
                                     <span className="text-xs text-slate-400 dark:text-white/40 uppercase tracking-wider">Category</span>
                                     <p className={`text-xl font-bold capitalize ${theme.accent}`}>{item.type}</p>
                                 </div>
+
+                                {item.link && item.link !== "#" && (() => {
+                                    const { label, icon: Icon } = getLinkDetails(item.link);
+                                    return (
+                                        <>
+                                            <div className="w-[1px] h-10 bg-slate-200 dark:bg-white/10"></div>
+                                            <div className="flex-1 flex justify-end">
+                                                <button
+                                                    onClick={() => window.open(item.link, '_blank')}
+                                                    className="group/btn flex items-center gap-2 px-5 py-2.5 rounded-xl
+                                                               border border-slate-200 dark:border-white/10
+                                                               bg-slate-50 dark:bg-white/5
+                                                               text-slate-900 dark:text-white
+                                                               text-sm font-bold transition-all
+                                                               hover:bg-slate-900 hover:text-white
+                                                               dark:hover:bg-white dark:hover:text-black
+                                                               hover:border-transparent
+                                                               hover:shadow-lg active:scale-95"
+                                                >
+                                                    <Icon className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
+                                                    <span>{label}</span>
+                                                </button>
+                                            </div>
+                                        </>
+                                    );
+                                })()}
                             </div>
+
 
                         </motion.div>
                     </div>
@@ -666,7 +665,7 @@ export function Timeline() {
         : timelineData.filter(item => item.type === activeFilter);
 
     return (
-        <section id="timeline" className="py-20 md:py-28 relative z-10 w-full">
+        <section id="timeline" className="py-20 md:py-28 relative z-10 w-full bg-transparent">
 
             {/* Background */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
