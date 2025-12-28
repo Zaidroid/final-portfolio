@@ -1,30 +1,21 @@
+import { Hero } from "@/components/sections/hero";
+import { Timeline } from "@/components/sections/timeline";
+import { Contact } from "@/components/sections/contact";
+import { InteractiveBackground } from "@/components/ui/interactive-background";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import { AdvancedThemeProvider } from "./hooks/useAdvancedTheme";
-
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AdvancedThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AdvancedThemeProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <main className="min-h-screen relative text-foreground overflow-x-hidden selection:bg-tatreez-red selection:text-white transition-colors duration-300">
+      <div className="fixed top-6 right-6 z-[60]">
+        <ModeToggle />
+      </div>
+      <InteractiveBackground />
+      <Hero />
+      <Timeline />
+      <Contact />
+    </main>
+  );
+}
 
 export default App;
